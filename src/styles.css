@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+
+.titulo{
+	font-size: 50px;
+	font-family: sans-serif;
+	
+}
+.ti{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+body{
+	background-color: black;
+
+}
+
+p{
+	color: white;
+}
+
+@font-face{
+	font-family: 'Muthiara';
+	src: url('./fonts/Muthiara.otf') format('opentype');
+ }
+
+ @font-face{
+	font-family: 'Ubuntu-Regular';
+	src: url('./fonts/Ubuntu-Regular.ttf') format('opentype');
+ }

@@ -1,0 +1,49 @@
+<!-- Button trigger sidenav -->
+<div class="d-flex justify-content-center align-items-center" >
+  <div>
+    <button type="button" class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+      <h1><img src="assets/imagenes/menu.png" alt="" width="15px" height="15px"> MENU</h1>
+    </button>
+  </div>
+</div>
+
+<!-- Sidenav -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <a class="navbar-brand" href="#"><img src="assets/imagenes/logo.png" width="400px"></a>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link"  [routerLink]="['home']">Home</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link"  [routerLink]="['about']">About</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link"  [routerLink]="['agendar']">Reservations</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['citas']">Citas</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['mansory']">Gallery</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['sidenav']">Reseñas</a>
+      </li>
+    </ul>
+    <form class="d-flex">
+      <!--<input #busquedaInput class="form-control me-2" (keyup.enter)="buscar.emit(busquedaInput.value)" type="text" placeholder="Busca la promoción del día">-->
+      <!--<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+      <app-buscar (buscar)="ver($event)"></app-buscar>
+      <p-toast></p-toast>
+      <div *ngIf="visible">
+        <img width="200px" [src]="datos.img" alt="{{datos.nombre}}">
+        <h1>{{datos.titulo}}</h1>
+        <p>{{datos.bio}}</p>
+      </div>
+    </form>
+  </div>
+</div>

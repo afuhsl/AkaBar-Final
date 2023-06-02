@@ -1,0 +1,19 @@
+.titulo{
+	font-size: 50px;
+	font-family: 'Muthiara';
+	
+}
+.ti{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    color: white;
+}
+
+table{
+	font-family: 'Ubuntu-Regular';
+    color: white;
+}
+body, div{
+	background-color: black;
+  }

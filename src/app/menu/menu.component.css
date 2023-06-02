@@ -1,0 +1,15 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  a, h1, div{
+    color: white;
+  }
+
+  body, div{
+    background-color: black;
+  }
