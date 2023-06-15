@@ -52,6 +52,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DetallesComponent } from './detalles/detalles.component';
 import { OpinionComponent } from './opinion/opinion.component';
 import { CardComponent } from './card/card.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { FQComponent } from './fq/fq.component';
 
 
 
@@ -74,7 +76,9 @@ import { CardComponent } from './card/card.component';
     DomseguroPipe,
     DetallesComponent,
     OpinionComponent,
-    CardComponent
+    CardComponent,
+    ContactoComponent,
+    FQComponent
   ],
   imports: [
     BrowserModule,

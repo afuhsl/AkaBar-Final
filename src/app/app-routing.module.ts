@@ -7,6 +7,8 @@ import { CitasComponent } from './citas/citas.component';
 import { MansoryComponent } from './mansory/mansory.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DetallesComponent } from './detalles/detalles.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { FQComponent } from './fq/fq.component';
 
 //Rutas del menu
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path: 'citas', component: CitasComponent},
   {path: 'mansory', component: MansoryComponent},
   {path: "sidenav", component: SidenavComponent},
+  {path: 'contacto', component: ContactoComponent},
+  {path: "preguntas", component: FQComponent},
   { path: 'citas/:nombre', component: DetallesComponent },
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

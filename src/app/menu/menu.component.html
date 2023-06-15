@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="assets/imagenes/logo.png" alt="Logo" style="width:400px;" class="rounded-pill"></a>
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="assets/imagenes/logo.png" alt="Logo" style="width:150px;" class="rounded-pill"></a>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">
         <li class="nav-item" routerLinkActive="active">
@@ -20,6 +20,12 @@
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['sidenav']">Reseñas</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['contacto']">Contactanos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['preguntas']">Ayuda</a>
         </li>
       </ul>
         <app-buscar (buscar)="ver($event)"></app-buscar>
