@@ -1,5 +1,5 @@
 div, body, mat-tab-group, mat-tab{
-	background-color: black;
+	background-color: rgb(245, 0, 0);
 }
 
 #mat-tab-group{
@@ -18,7 +18,7 @@ b, div{
     border-radius: 8px;
     text-align: center;
     padding-left: 10px;
-    background-color: rgba(76, 76, 76, 0.278);
+    background-color: rgba(255, 0, 0, 0.497);
   }
   
   .example-small-box {
@@ -53,6 +53,7 @@ b, div{
   }
   .ti{
     display: flex;
+    padding-top: 5%;
     justify-content: center;
     align-items: center;
   }
