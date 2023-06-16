@@ -1,0 +1,93 @@
+
+mat-form-field, 
+mat-label, 
+mat-datepicker-toggle, 
+mat-datepicker{
+  color: white;
+}
+.hijo, label{
+  color: white;
+  
+}
+.servicios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .servicios img {
+    width: calc(25% - 20px);
+    height: auto;
+    margin: 10px;
+    object-fit: cover;
+  }
+.contenedor{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
+
+
+.calendar, .formu{
+    width: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+.calendario{
+    background-color: black;
+}
+#tabla{
+  color: white;
+
+}
+.formu p{
+    background: black;
+    
+}
+.tam{
+    width: 100%;
+
+}
+
+.disabled-date, .ui-calendar{
+    color: rgb(169, 138, 38);
+    background-color: azure;
+  }
+
+  .texto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(65, 7, 7, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgb(179, 195, 245);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .titulo{
+	font-size: 50px;
+  font-family: 'Muthiara';
+}
+.ti{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  
+  background-color: black;
+  color:white;
+}
+ 
+div{
+  font-family: 'Ubuntu-Regular';
+}
+
+section{
+  background-color: black;
+}

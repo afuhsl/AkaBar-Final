@@ -1,0 +1,102 @@
+<header>
+    <link rel="stylesheet" href="home.component.css">
+    <script src="js.js"></script>
+</header>
+
+
+    <body>
+<div>
+    <section class="principal">
+        <div>
+            <img id="principal" src="assets/imagenes/principal.jpeg">
+        </div>
+    </section>
+    <hr>
+    <section>
+        <div>
+            <div class="queofrecemos">
+                <h1>BIENVENIDOS A <strong>AKA BAR</strong> EL MEJOR LUGAR PARA CONVIVIR CON TUS AMIGOS</h1>
+                <h3>REALIZA UNA RESERVACION CON NOSOTROS Y DISFRUTA DE TODO LO QUE OFRECEMOS</h3>
+            </div>
+            <div class="queofrecemos">
+                <img class="redondo" id="chica" src="assets/imagenes/2.png" alt="">
+                <img class="redondo" id='grande' src="assets/imagenes/8.png" alt="">
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </section>
+
+     <hr>
+    
+    <section class="drinks">
+        <div class="general">
+            <div class="container1">
+                <img src="assets/imagenes/3.png" alt="Avatar" class="image">
+                <div class="overlay">
+                    <div class="text">Autumn Fizz</div>
+                </div>
+            </div>
+            <div class="container1">
+                <img src="assets/imagenes/9.png" alt="Avatar" class="image">
+                <div class="overlay">
+                    <div class="text">Tequila Sunrise</div>
+                </div>
+            </div>
+            <div class="container1">
+                <img src="assets/imagenes/5.png" alt="Avatar" class="image">
+                <div class="overlay">
+                    <div class="text">Whiskey Sour Cocktail</div>
+                </div>
+            </div>
+            <div class="container1">
+                <img src="assets/imagenes/10.png" alt="Avatar" class="image">
+                <div class="overlay">
+                    <div class="text">Blue Lagoon </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </section>
+    <hr>
+    <section class="vid">
+            <div class='divIzq'>
+                <h2 class="h2">Prepara tus propios Drinks!!</h2>
+                <p class="p">Revisa este video y ve lo fàcil y ràpido que podrias crear una bebida </p>
+            </div>
+            <div class="video">
+                <iframe width="560" height="315" [src]="video | domseguro:'https://www.youtube.com/embed/' "
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div style="clear:both"></div>
+    </section>
+
+</div>
+<!-- Grid container -->
+<div class="container p-4 pb-0 text-center">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+        <!-- Menu -->
+        <a class="btn text-white btn-floating m-1" style="background-color: #82a1cf;" href="#!" role="button"
+            data-toggle="tooltip" data-placement="bottom" title="Menu!"><i class="fa-solid fa-list tamano"></i>
+        </a>
+
+        <!-- Calendario -->
+        <a class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="agendar.html" role="button"
+            data-toggle="tooltip" data-placement="bottom" title="Reservaciones!"><i
+                class="fa-regular fa-calendar-days tamano"></i></a>
+
+        <!-- Promociones -->
+        <a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"
+            data-toggle="tooltip" data-placement="bottom" title="Promociones!"><i
+                class="fa-solid fa-wine-bottle tamano"></i></a>
+
+        <!-- Quienes somos -->
+        <a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"
+            data-toggle="tooltip" data-placement="bottom" title="Quienes somos"><i
+                class="fa-sharp fa-solid fa-user-plus tamano"></i></a>
+    </section>
+    <!-- Section: Social media -->
+</div>
+<!-- Grid container -->
+</body>

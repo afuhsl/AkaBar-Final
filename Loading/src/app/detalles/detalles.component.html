@@ -1,0 +1,37 @@
+<div class="ti">
+    <h1 class="titulo">Cita Completa</h1>
+</div>
+
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Personas</th>
+                <th scope="col">Email</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Area</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{cita.nombre}}</td>
+                <td>{{cita.cantidadPersonas}}</td>
+                <td>{{cita.email}}</td>
+                <td>{{cita.hora}}</td>
+                <td>{{cita.fecha | date: 'dd/MM/yyyy'}}</td>
+                <td>{{cita.servicio}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><br><br>
+    <hr>
+    <br><br><br>
+    <div class="ti">
+        <img src="../../assets/imagenes/image.png" alt="">
+    
+    </div>
+</div>
+

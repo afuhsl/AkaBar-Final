@@ -1,0 +1,46 @@
+.example-card {
+  max-width: 400px;
+}
+
+#formu{
+  background-image: url('../../assets/imagenes/image.png');
+  color: white;
+  background-position: center;
+}
+
+.titulo{
+  font-size: 50px;
+  font-family: 'Muthiara';
+  
+}
+.ti{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div{
+  font-family: 'Ubuntu-Regular';
+  background-color: black;
+}
+
+body{
+  background-color: black;
+  color:white;
+}
+.container{
+  color:black;
+}
+
+p
+,mat-card-title,
+mat-card-subtitle{
+  color: black;;
+}
+
+mat-card-header, 
+mat-card, 
+mat-card-subtitle,
+mat-card-title{
+  background-color: white;
+}

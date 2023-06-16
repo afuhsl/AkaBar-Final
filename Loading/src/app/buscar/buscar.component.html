@@ -1,0 +1,4 @@
+<form class="d-flex">
+    <input id="buscar" #busquedaInput class="form-control me-2" (keyup.enter)="buscar.emit(busquedaInput.value)" type="text" placeholder="Busca la promoción del día">
+    <button class="btn btn-outline-light" (click)="buscar.emit(busquedaInput.value)">Buscar</button>
+</form>
