@@ -25,7 +25,7 @@ mat-datepicker{
 .contenedor{
     display: flex;
     justify-content: center;
-    background-color: black;
+    background-color: #0E202C;
 }
 
 
@@ -35,17 +35,17 @@ mat-datepicker{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background-color: #0E202C;
 }
 .calendario{
-    background-color: black;
+    background-color: #0E202C;
 }
 #tabla{
   color: white;
 
 }
 .formu p{
-    background: black;
+    background: #0E202C;
     
 }
 .tam{
@@ -80,7 +80,7 @@ mat-datepicker{
 	justify-content: center;
 	align-items: center;
   
-  background-color: black;
+  background-color: #0E202C;
   color:white;
 }
  
@@ -89,5 +89,5 @@ div{
 }
 
 section{
-  background-color: black;
+  background-color: #0E202C;
 }

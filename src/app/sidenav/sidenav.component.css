@@ -21,11 +21,11 @@
 
 div{
   font-family: 'Ubuntu-Regular';
-  background-color: black;
+  background-color:#0E202C;
 }
 
 body{
-  background-color: black;
+  background-color:#0E202C;
   color:white;
 }
 .container{
@@ -35,7 +35,7 @@ body{
 p
 ,mat-card-title,
 mat-card-subtitle{
-  color: black;;
+  color: #D2BBB2;
 }
 
 mat-card-header, 
