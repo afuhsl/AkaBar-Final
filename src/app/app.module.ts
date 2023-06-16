@@ -18,7 +18,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BuscarComponent } from './buscar/buscar.component';
 
 //Date-picker mat.spinner  angular material 1
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatetimepickerModule, MatNativeDatetimeModule } from "@mat-datetimepicker/core";
@@ -52,10 +52,11 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DetallesComponent } from './detalles/detalles.component';
 import { OpinionComponent } from './opinion/opinion.component';
 import { CardComponent } from './card/card.component';
-
-
-
-
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -74,7 +75,8 @@ import { CardComponent } from './card/card.component';
     DomseguroPipe,
     DetallesComponent,
     OpinionComponent,
-    CardComponent
+    CardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +102,11 @@ import { CardComponent } from './card/card.component';
     MatTabsModule,
     TooltipModule,
     ToastModule,
-    MatCardModule
+    ReactiveFormsModule,
+    MatCardModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [TablaService, MessageService, PromocionesService ],
   bootstrap: [AppComponent]

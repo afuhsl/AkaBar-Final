@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import {PromocionesService, Promo} from '../shared/promociones.service';
 import { MessageService } from 'primeng/api';
+import { Auth, user } from '@angular/fire/auth';
+import { FirebaseService } from '../firebase.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,12 +17,50 @@ export class MenuComponent {
   datos!: Promo;
   mensaje:string="";
   visible:boolean =false;
+  usuario=false;
+  admin =false;
+  usuarioAutenticado: boolean = false;
 
   @Input() busqueda: string = '';
 
-  constructor(public servicio: PromocionesService, private messageService: MessageService) {
+  constructor(
+    public servicio: PromocionesService, 
+    private messageService: MessageService,
+    private auth: Auth,
+    private ss : FirebaseService,
+    private ruta: Router) {
     this.promociones=this.servicio.getPromociones();
     console.log(this.promociones);
+
+    this.auth.onAuthStateChanged((user) =>{
+      if(user){
+        this.usuarioAutenticado=true;
+        const userId = user.uid;
+        if(userId == '1CMjiHE3XrOhVud6qvWFErVAvrK2'){
+          this.admin=true;
+          this.usuario=false;
+        }else{
+          this.admin=false;
+          this.usuario=true;
+        }
+      }else{
+        this.usuarioAutenticado=false;
+      }
+    })
+  
+  }
+
+
+  salir(){
+    this.ss.logOut()
+      .then((response) =>{
+        location.reload();
+        console.log(response)
+        this.ruta.navigate(['/home'])
+      })
+      .catch((error) =>{
+        console.log(error);
+      })
   }
 
   ngOnChanges(changes: any){

@@ -7,6 +7,7 @@ import { CitasComponent } from './citas/citas.component';
 import { MansoryComponent } from './mansory/mansory.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DetallesComponent } from './detalles/detalles.component';
+import { LoginComponent } from './login/login.component';
 
 //Rutas del menu
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'citas', component: CitasComponent},
   {path: 'mansory', component: MansoryComponent},
   {path: "sidenav", component: SidenavComponent},
+  {path: "login", component: LoginComponent},
   { path: 'citas/:nombre', component: DetallesComponent },
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
