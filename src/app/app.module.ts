@@ -57,6 +57,8 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { LoginComponent } from './login/login.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { FQComponent } from './fq/fq.component';
 
 
 
@@ -77,6 +79,8 @@ import { LoginComponent } from './login/login.component';
     OpinionComponent,
     CardComponent,
     LoginComponent
+    ContactoComponent,
+    FQComponent
   ],
   imports: [
     BrowserModule,
