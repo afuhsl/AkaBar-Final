@@ -9,3 +9,7 @@
   a, h1, div{
     color: white;
   }
+
+  #log{
+    text-decoration: none;
+  }

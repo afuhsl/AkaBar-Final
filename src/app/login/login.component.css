@@ -1,0 +1,28 @@
+.not, #not{
+    font-size: 12px;
+    color: rgb(207, 10, 10);
+}
+
+.yes{
+    font-size: 12px;
+    color: green;
+}
+
+button[type="submit"] {
+    width: 100%; /* Ajusta el ancho del botón para que ocupe todo el espacio disponible */
+    margin-top: 20px; /* Ajusta el margen superior del botón según sea necesario */
+  }
+
+  .container{
+    background-color: rgba(255, 255, 255, 0.473);
+  }
+
+  body{
+    background-color: black;
+  }
+
+  .banner{
+    text-align: center;
+    font-size: 50px;
+  font-family: 'Muthiara';
+  }

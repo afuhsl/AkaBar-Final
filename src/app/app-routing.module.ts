@@ -7,6 +7,7 @@ import { CitasComponent } from './citas/citas.component';
 import { MansoryComponent } from './mansory/mansory.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DetallesComponent } from './detalles/detalles.component';
+import { LoginComponent } from './login/login.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { FQComponent } from './fq/fq.component';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'citas', component: CitasComponent},
   {path: 'mansory', component: MansoryComponent},
   {path: "sidenav", component: SidenavComponent},
+  {path: "login", component: LoginComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: "preguntas", component: FQComponent},
   { path: 'citas/:nombre', component: DetallesComponent },
