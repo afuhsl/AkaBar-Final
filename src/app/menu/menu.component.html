@@ -1,47 +1,80 @@
-<header class="cabezera">
-  <div class="cab_nav">
-    <div class="padre">
-    <div>
-    <img src="../../assets/imagenes/Aka (3).png" alt="" class="logo_img" />
-    </div>
-    
-      <ul>
-        <li routerLinkActive="active">
-          <a [routerLink]="['home']">Home</a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['about']">About</a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['agendar']">Reservations</a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['citas']">Citas</a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['mansory']">Gallery</a>
-        </li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['sidenav']">Reseñas</a>
-        </li>
-      </ul>
-
-      <div class="nomb_logo">
-        <app-buscar (buscar)="ver($event)"></app-buscar>
-        <p-toast></p-toast>
-        <div *ngIf="visible">
-          <img width="200px" [src]="datos.img" alt="{{ datos.nombre }}" />
-          <h1>{{ datos.titulo }}</h1>
-          <p style="color: black;">{{ datos.bio }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!--<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="assets/imagenes/logo.png" alt="Logo" style="width:200px;" class="rounded-pill"></a>
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="assets/imagenes/logo.png"
+        alt="Logo" style="width:100px;" class="rounded-pill"></a>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['home']">Inicio</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['about']">Conocenos</a>
+        </li>
+        
+        <li class="nav-item dropdown" *ngIf="usuario">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Reservaciones
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li  routerLinkActive="active" >
+              <a class="dropdown-item" [routerLink]="['agendar']">Hacer Reservacion</a>
+            </li>
+            <li  routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['citas']">Ver Citas</a>
+            </li>
+            <li  routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['sidenav']">Reseñas</a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li  routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['']">Mi Espacio</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['contacto']">Contactanos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['preguntas']">Ayuda</a>
+        </li>
+          </ul>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['mansory']">Galeria</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="admin">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li  routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['']">Usuario</a>
+            </li>
+            <li  routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['']">Graficas</a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li  routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['']">Mi Espacio</a>
+            </li>
+          </ul>
+        </li>
+        
+      </ul>
+      <app-buscar (buscar)="ver($event)"></app-buscar>
+      <p-toast></p-toast>
+      <div *ngIf="visible">
+        <img width="200px" [src]="datos.img" alt="{{datos.nombre}}">
+        <h1>{{datos.titulo}}</h1>
+        <p>{{datos.bio}}</p>
+      </div>
+
+      
+      <button id="log" class="btn btn-outline-light"> <a [routerLink]="['login']" *ngIf="!usuarioAutenticado">Login</a></button>
+      <button id="log" class="btn btn-outline-warning" (click)="salir()" *ngIf="usuarioAutenticado"> LogOut</button>
+      <!--<input class="form-control me-2" type="text" placeholder="Search">
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="assets/imagenes/logo.png" alt="Logo" style="width:150px;" class="rounded-pill"></a>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">
         <li class="nav-item" routerLinkActive="active">
@@ -62,6 +95,12 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['sidenav']">Reseñas</a>
         </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['contacto']">Contactanos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['preguntas']">Ayuda</a>
+        </li>
       </ul>
         <app-buscar (buscar)="ver($event)"></app-buscar>
         <p-toast></p-toast>
@@ -73,9 +112,7 @@
     </div>
   </div>
 </nav>
--->
-
-<!--<nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
   <div class="container-fluid">
     <div class="container">
       <a class="" routerLinkActive="active" [routerLink]="['home']">

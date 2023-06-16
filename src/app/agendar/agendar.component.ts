@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FirebaseService } from '../firebase.service';
 
 
 
@@ -13,18 +14,7 @@ const LOCAL_STORAGE_KEY = 'citas'
   styleUrls: ['./agendar.component.css']
 })
 export class AgendarComponent {
-  forma!: FormGroup;
-  nombre2: string = '';
-  email2: string = '';
-  cantidadPersonas2: number = 0;
-  servicio2: string = '';
-  fecha2: Date = new Date();
-  hora2: string = '';
-  fecha: Date;
-  //vector con infromacion 
-  lista: any[] = [];
-  ultimaResrvacion: any;
-  
+  reserva!: FormGroup;
 
 
   reservaGuardada: boolean = false;
@@ -34,19 +24,27 @@ export class AgendarComponent {
 
 
 
-  constructor(private messageService: MessageService) {
-    this.forma = new FormGroup({
-      'correo': new FormControl('',[Validators.required,Validators.email]),
+  constructor(
+    private messageService: MessageService,
+    private cita: FirebaseService) {
+    this.reserva = new FormGroup({
+      name: new FormControl(),
+      email : new FormControl(),
+      place : new FormControl(),
+      persons : new FormControl(),
+      date : new FormControl(),
       })
-    this.fecha = new Date();
-    this.fecha = new Date();
-    const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (savedData) {
-      const savedList = JSON.parse(savedData);
-      this.fechasGuardadas = savedList.map((item: any) => new Date(item.fecha));
-    }
   }
 
+
+  guardarReserva(){
+    this.cita.agendarCira(this.reserva.value)
+    .then(() => {
+      this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
+        this.reserva.reset();
+      })
+  }
+  /*
   guardarReserva() {
     const reserva = {
       nombre: this.nombre2,
@@ -78,6 +76,7 @@ export class AgendarComponent {
 
   //funcion que verifica que las fechas no se repitan en el arreglo
   //true si la fecha se repite, false si no
+  
   fechaRepetida(date: Date): boolean {
     const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (savedData) {
@@ -113,5 +112,5 @@ export class AgendarComponent {
   ocultarTexto(numero: number) {
     this.textoVisible = 0;
   }
-
+ */
 }

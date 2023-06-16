@@ -1,0 +1,121 @@
+<br><br><br>
+<h2 class="banner">Login</h2>
+
+<div class="d-flex justify-content-center">
+    <div class="btn-group-vertical">
+        <button type="button" class="btn btn-outline-dark btn-lg " (click)="showEmailTemplate()">
+            Login con usuario
+            <ng-container *ngIf="selectedTemplate === 'email'">
+                <div>
+                    <hr>
+                    <form [formGroup]="formAccesso" (ngSubmit)="logIn()">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" formControlName="email">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" formControlName="password">
+                        </div>
+                        <input type="submit" value="Aceptar" class="btn btn-outline-info">
+                    </form>
+                </div>
+            </ng-container>
+        </button>
+        <button type="button" class="btn btn-outline-dark btn-lg btn-block" (click)="showPhoneTemplate()">
+            Login con Numero de telefono
+            <ng-container *ngIf="selectedTemplate === 'phone'">
+                <form [formGroup]="formPhone" (ngSubmit)="onSubmit()">
+                    <div>
+                        <label for="phoneNumber">Número de teléfono:</label>
+                        <input type="text" id="phoneNumber" formControlName="phone" />
+                    </div>
+                    <div class="m-0 row justify-content-center align-items-center">
+                        <div id="recaptcha-container"></div>
+                    </div>
+                    <button type="submit">Enviar código de verificación</button>
+
+                    <div *ngIf="windowRef.confirmationResult">
+                        <label for="code">Ingresa tu codigo</label>
+                        <input type="text" name="code" [(ngModel)]="verificarCodigo" class="input">
+
+                        <button (click)="verificar()" class="btn btn-outline-info">Verificar</button>
+                    </div>
+                </form>
+            </ng-container>
+        </button>
+
+    </div>
+</div>
+<div class="d-flex justify-content-center">
+    <button class="btn btn-outline-info" (click)="showRegisterTemplate()">Registrarse</button>
+
+</div>
+
+
+
+<ng-container *ngIf="selectedTemplate === 'register'">
+    <div class="container">
+    <form [formGroup]="register" (ngSubmit)="registrar()" class="needs-validation" novalidate>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div>
+                    <label for="">Nombre:</label>
+                    <input type="text" class="form-control" formControlName="name">
+                </div>
+                <div>
+                    <label for="">Username:</label>
+                    <input type="text" [ngClass]="{'is-invalid':!register.get('username')?.valid}" class="form-control"
+                        formControlName="username">
+                    <div *ngIf="register.controls['username'].errors?.['required']" class="invalid-feedback">
+                        El usuario es necesario
+                    </div>
+                    <div *ngIf="register.controls['username'].errors?.['minlength']" class="invalid-feedback">
+                        Por lo menos seis caracteres
+                    </div>
+                </div>
+                <div>
+                    <label for="">Email</label>
+                    <input type="email" class="form-control" formControlName="email"
+                        [ngClass]="{'is-invalid':!register.get('email')?.valid }">
+                    <div *ngIf="register.controls['email'].errors?.['required']" class="invalid-feedback">
+                        Correo obligatorio
+                    </div>
+                    <div *ngIf="register.controls['email'].errors?.['email']" class="invalid-feedback">
+                        El correo no tiene el formato correcto
+                    </div>
+                </div>
+                <div>
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" formControlName="password"
+                        [ngClass]="{'is-invalid':!register.get('password')?.valid }">
+                    <div *ngIf="register.controls['password'].errors?.['required']" class="invalid-feedback">
+                        Campo obligatorio
+                    </div>
+                    <div *ngIf="register.controls['password'].errors?.['minlength']" class="invalid-feedback">
+                        Al menos 8 caracteres
+                    </div>
+                </div>
+                <div>
+                    <label for="">Confirm Password</label>
+                    <input type="password" class="form-control" formControlName="confirmpassword">
+                    <div *ngIf="register.get('confirmpassword')?.valid && !register.get('confirmpassword')?.hasError('passwordMismatch')"
+                        class="valid-feedback">
+                        Las contraseñas coinciden.
+                    </div>
+                    <div *ngIf="register.get('confirmpassword')?.hasError('passwordMismatch')" class="not">
+                        Las contraseñas no coinciden.
+                    </div>
+                </div>
+                <div>
+                    <label for="">Phone</label>
+                    <input type="tel" class="form-control" formControlName="phone" placeholder="+52 ">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-outline-success">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</ng-container>
