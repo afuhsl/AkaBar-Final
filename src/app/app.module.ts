@@ -59,6 +59,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { LoginComponent } from './login/login.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { FQComponent } from './fq/fq.component';
+import { GraficasComponent } from './graficas/graficas.component';
 
 
 
@@ -80,7 +81,8 @@ import { FQComponent } from './fq/fq.component';
     CardComponent,
     LoginComponent,
     ContactoComponent,
-    FQComponent
+    FQComponent,
+    GraficasComponent
   ],
   imports: [
     BrowserModule,
