@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors, FormBuilder } from '@angular/forms';
 import { FirebaseService } from '../firebase.service';
+import { Auth } from '@angular/fire/auth';
+import { Firestore, query, collection, getDocs, where } from '@angular/fire/firestore';
+
+
 import { HttpClient } from '@angular/common/http';
 import * as Notiflix from 'notiflix';
-
-const LOCAL_STORAGE_KEY = 'citas'
 
 
 @Component({
@@ -19,26 +21,84 @@ export class AgendarComponent {
 
   reservaGuardada: boolean = false;
   fechasGuardadas: Date[] = [];
-  visible:boolean = false;
-  textoVisible: number =0;
+  visible: boolean = false;
+  textoVisible: number = 0;
 
 
 
   constructor(
     private httpclient:HttpClient,
     private messageService: MessageService,
-    private cita: FirebaseService) {
-    this.reserva = new FormGroup({
-      name: new FormControl(),
-      email : new FormControl(),
-      place : new FormControl(),
-      persons : new FormControl(),
-      date : new FormControl(),
-      })
+    private cita: FirebaseService,
+    private formBuilder: FormBuilder,
+    private afAuth: Auth,
+    private firestore: Firestore
+  ) {
+    this.reserva = this.formBuilder.group({
+      name: new FormControl('',[Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      place: new FormControl(),
+      persons: new FormControl(),
+      date: new FormControl('', [Validators.required, this.dateValidator()]),
+    })
+  }
+
+  guardarReserva() {
+    this.afAuth.onAuthStateChanged((user) => {
+      if (user) {
+        const userId = user.uid;
+        const cita = { ...this.reserva.value, userId };
+
+        const fechaSeleccionada: Date = cita.date;
+        this.verificarFechaExistente(fechaSeleccionada).then((existeFecha) => {
+          if (existeFecha) {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La fecha ya está reservada' });
+          } else {
+            this.cita.agendarCira(cita)
+              .then(() => {
+                this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
+                this.reserva.reset();
+              })
+              .catch((error) => {
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message });
+              });
+          }
+        })
+        .catch((error) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message });
+        });
+      }
+    });
+  }
+
+  //Valida que la fecha no halla pasado ya
+  dateValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const selectedDate: Date = control.value;
+      const currentDate: Date = new Date();
+
+      if (selectedDate <= currentDate) {
+        return { pastDate: true };
+      }
+
+      return null;
+    };
+  }
+
+  async verificarFechaExistente(fecha: Date): Promise<boolean> {
+    //Verifica que durante todo el dia no se halla guardado ya la fecha
+    const fechaInicio = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 0, 0, 0);
+    const fechaFin = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 23, 59, 59);
+  
+    const citasRef = collection(this.firestore, 'Citas');
+    const citasQuery = query(citasRef, where('date', '>=', fechaInicio), where('date', '<=', fechaFin));
+  
+    const querySnapshot = await getDocs(citasQuery);
+    return querySnapshot.size > 0; // Verificar si hay algún resultado en la consulta
   }
 
 
-  guardarReserva(){
+  /*guardarReserva(){
     this.cita.agendarCira(this.reserva.value)
     .then(() => {
       this.enviocita();
@@ -123,7 +183,7 @@ export class AgendarComponent {
       
   }
 
- 
+ */
 
   mostrarTexto(numero: number) {
     this.textoVisible = numero;
@@ -132,5 +192,5 @@ export class AgendarComponent {
   ocultarTexto(numero: number) {
     this.textoVisible = 0;
   }
- */
+ 
 }
