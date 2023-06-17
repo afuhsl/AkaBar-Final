@@ -10,6 +10,7 @@ import { DetallesComponent } from './detalles/detalles.component';
 import { LoginComponent } from './login/login.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { FQComponent } from './fq/fq.component';
+import { GraficasComponent } from './graficas/graficas.component';
 
 //Rutas del menu
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: "preguntas", component: FQComponent},
+  {path: "graficas", component: GraficasComponent},
   { path: 'citas/:nombre', component: DetallesComponent },
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
