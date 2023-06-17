@@ -1,0 +1,35 @@
+<button type="button" class="btn btn-success" (click)="mostrar()">Mostrar datos</button>
+
+<div *ngIf="visible" class="container mt-3">  
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Zona</th>
+          <th>Cantidad de personas</th>
+          <th>Hora concurrida</th>
+          <th>Servicio mas solicitado</th>
+          <th>Cantidad de veces solicitado el servicio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dato of datos; let i=index ">
+          <td >{{servicio[i]}}</td>
+          <td >{{dato.cantidad}}</td>
+          <td >{{dato.hora}}:00 horas</td>
+          <td>{{promociones[i]}}</td>
+          <td >{{dato.pedidos}}</td>
+        </tr>
+      </tbody>
+    </table> 
+    <div class="container mt-3">
+      <div style="width: 45%;">
+        <canvas id="myChart" width="700" height="450">{{chart}}</canvas>
+      </div>
+    </div>
+    <br>
+    <div class="container mt-3">
+      <div style="width: 45%;">
+        <canvas id="myChart1" width="700" height="450">{{chart}}</canvas>
+      </div>
+    </div> 
+</div>

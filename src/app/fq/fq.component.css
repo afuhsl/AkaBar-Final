@@ -1,0 +1,6 @@
+.container-fluid {
+display: flex;
+padding-left: 10%;
+align-items: center;
+justify-content: center;
+}

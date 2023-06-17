@@ -1,30 +1,24 @@
 <div style="margin: 3%;">
     <h2 style="text-align: center">Comunicate con nosotros</h2>
-    <form action="" onsubmit="" method="post">
+    <form [formGroup]="datos">
       <div class="container mt-3">
-          <div class="mb-3 mt-3 was-validated">
-            <label for="uname" class="form-label">Nombre(s):</label>
-            <input type="text" class="form-control" name="nombre" required>
-            <div class="valid-feedback">Valido.</div>
-            <div class="invalid-feedback">Por favor, rellene este campo.</div>
-          </div>
-          <div class="mb-3 mt-3 was-validated">
-            <label for="uname" class="form-label">Apellidos:</label>
-            <input type="text" class="form-control" name="apellidos" required>
-            <div class="valid-feedback">Valido.</div>
-            <div class="invalid-feedback">Por favor, rellene este campo.</div>
+          <div class="mb-3 mt-3">
+            <label class="form-label">Nombre(s):</label>
+            <input type="text" class="form-control" formControlName="nombre">
+            </div>
+          <div class="mb-3 mt-3">
+            <label class="form-label">Asunto:</label>
+            <input type="text" class="form-control" formControlName="asunto">
+            </div>
+          <div class="mb-3 mt-3">
+            <label>Sugerencia/Opinion/Pregunta:</label>
+            <textarea class="form-control" formControlName="mensaje" rows="5"></textarea>
           </div>
           <div class="mb-3 mt-3">
-            <label for="comment">Sugerencia/Opinion/Pregunta:</label>
-            <textarea class="form-control" rows="5" name="opinon"></textarea>
+            <label>Email:</label>
+            <input type="email" formControlName="correo" class="form-control" placeholder="ejemplo@example.com">
           </div>
-          <div class="mb-3 mt-3 was-validated">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" placeholder="ejemplo@example.com" name="email" required>
-            <div class="valid-feedback">Valido.</div>
-            <div class="invalid-feedback">Por favor, rellene este campo.</div>
-          </div>
-          <button type="submit" name="enviar" id="enviar" class="btn btn-secondary" value="enviar">Enviar</button>
+          <button type="submit" class="btn btn-secondary" (click)="enviocorreo()">Enviar</button>
       </div>
     </form>
   </div>

@@ -10,12 +10,18 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['about']">Conocenos</a>
         </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['contacto']">Contactanos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['preguntas']">Ayuda</a>
+        </li>
         
         <li class="nav-item dropdown" *ngIf="usuario">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Reservaciones
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu dropdown-menu-dark">
             <li  routerLinkActive="active" >
               <a class="dropdown-item" [routerLink]="['agendar']">Hacer Reservacion</a>
             </li>
@@ -49,7 +55,7 @@
               <a class="dropdown-item" [routerLink]="['']">Usuario</a>
             </li>
             <li  routerLinkActive="active">
-              <a class="dropdown-item" [routerLink]="['']">Graficas</a>
+              <a class="dropdown-item" [routerLink]="['graficas']">Graficas</a>
             </li>
             <li><hr class="dropdown-divider"></li>
             <li  routerLinkActive="active">
@@ -109,10 +115,12 @@
           <h1>{{datos.titulo}}</h1>
           <p>{{datos.bio}}</p>
         </div>
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button class="btn btn-primary" type="button">Search</button>-->
     </div>
   </div>
 </nav>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+<!--<nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
   <div class="container-fluid">
     <div class="container">
       <a class="" routerLinkActive="active" [routerLink]="['home']">
