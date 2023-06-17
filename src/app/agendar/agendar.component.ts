@@ -6,6 +6,8 @@ import { Auth } from '@angular/fire/auth';
 import { Firestore, query, collection, getDocs, where } from '@angular/fire/firestore';
 
 
+import { HttpClient } from '@angular/common/http';
+import * as Notiflix from 'notiflix';
 
 
 @Component({
@@ -25,6 +27,7 @@ export class AgendarComponent {
 
 
   constructor(
+    private httpclient:HttpClient,
     private messageService: MessageService,
     private cita: FirebaseService,
     private formBuilder: FormBuilder,
@@ -95,6 +98,32 @@ export class AgendarComponent {
   }
 
 
+  /*guardarReserva(){
+    this.cita.agendarCira(this.reserva.value)
+    .then(() => {
+      this.enviocita();
+      })
+  }
+
+  enviocita(){
+    Notiflix.Loading.standard('Cargando...');
+  
+    let params = {
+      email: this.reserva.value.email,
+      asunto: "Confirmacion de Cita",
+      nombre : this.reserva.value.name,
+      lugar : this.reserva.value.place,
+      personas : this.reserva.value.persons, 
+      fecha : this.reserva.value.date
+    }
+    console.log(params)
+    this.httpclient.post('http://localhost:3000/envioCita',params).subscribe(resp=>{
+      console.log(resp)
+      Notiflix.Loading.remove();
+      this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
+        this.reserva.reset();
+    })
+   }
   /*
   guardarReserva() {
     const reserva = {

@@ -24,7 +24,7 @@ export class PromocionesService {
       nombre: "viernes",
       titulo: "Botella cumpleañera",
       bio: "Presentando tu INE te regalamos una botella    *Botellas seleccionadas   *Aplica restricciones     *Valido de Viernes a Domingo de 5:00 a 10:00 pm",
-      img: "assets/imgagenes/viernes.png",
+      img: "assets/imagenes/viernes.png",
       
     },
     {
