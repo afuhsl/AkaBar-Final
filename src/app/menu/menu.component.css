@@ -13,3 +13,6 @@
   #log{
     text-decoration: none;
   }
+  li{
+    padding-left: 10px;
+  }
