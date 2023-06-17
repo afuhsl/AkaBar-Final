@@ -19,11 +19,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let cita of lista">
-        <td>{{cita.name}}</td>
-        <td>{{cita.email}}</td>
+        <td>{{ cita.name }}</td>
+        <td>{{ cita.email }}</td>
         <td>{{ formatearFecha(cita.date) }}</td>
-        <td>{{cita.place}}</td>
-        <td>{{cita.persons}}</td>
+        <td>{{ cita.place }}</td>
+        <td>{{ cita.persons }}</td>
         <td><button class="btn btn-outline-danger" (click)="onClickDelete(cita)">Eliminar</button></td>
       </tr>
     </tbody>

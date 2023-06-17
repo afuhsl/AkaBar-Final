@@ -41,7 +41,7 @@ export class FirebaseService {
   }
 
   eliminarCita(cita: Cita){
-    const  cit = doc(this.firestore,`Citas/${cita.name}`);
+    const  cit = doc(this.firestore,`Citas/${cita.id}`);
     return deleteDoc(cit);
   }
 
