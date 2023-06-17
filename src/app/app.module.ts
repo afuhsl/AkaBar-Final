@@ -80,7 +80,7 @@ import { FQComponent } from './fq/fq.component';
     CardComponent,
     LoginComponent,
     ContactoComponent,
-    FQComponent
+    FQComponent,
   ],
   imports: [
     BrowserModule,
