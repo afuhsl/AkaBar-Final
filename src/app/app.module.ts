@@ -78,9 +78,9 @@ import { FQComponent } from './fq/fq.component';
     DetallesComponent,
     OpinionComponent,
     CardComponent,
-    LoginComponent
+    LoginComponent,
     ContactoComponent,
-    FQComponent
+    FQComponent,
   ],
   imports: [
     BrowserModule,
