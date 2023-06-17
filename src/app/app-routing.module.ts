@@ -8,6 +8,7 @@ import { MansoryComponent } from './mansory/mansory.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DetallesComponent } from './detalles/detalles.component';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 //Rutas del menu
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'mansory', component: MansoryComponent},
   {path: "sidenav", component: SidenavComponent},
   {path: "login", component: LoginComponent},
+  {path: "admin", component: AdminComponent},
   { path: 'citas/:nombre', component: DetallesComponent },
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

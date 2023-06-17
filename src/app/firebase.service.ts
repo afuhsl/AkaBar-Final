@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, QuerySnapshot, addDoc, collection, getDocs, query, where,  } from '@angular/fire/firestore';
+import { Firestore, QuerySnapshot, addDoc, collection, deleteDoc, doc, getDocs, query, where,  } from '@angular/fire/firestore';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from '@angular/fire/auth'
 import { Registro } from './registro';
 import { Cita } from './cita';
@@ -40,7 +40,10 @@ export class FirebaseService {
     return signOut(this.auth);
   }
 
-  
+  eliminarCita(cita: Cita){
+    const  cit = doc(this.firestore,`Citas/${cita.name}`);
+    return deleteDoc(cit);
+  }
 
   async verificarTelefono(telefono:any) : Promise<boolean> {
     const tel = collection(this.firestore, 'Usuarios');

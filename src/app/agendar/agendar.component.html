@@ -1,7 +1,9 @@
-<div class="ti">
-  <h1 class="titulo">Haz tu Reservacion</h1>
-</div>
-<!--
+<body>
+  <div class="ti">
+    <br><br><br><br><br>
+    <h1 class="titulo">Haz tu Reservacion</h1>
+  </div>
+  
 <section class="servicios" [ngStyle]="{'color': 'white'}">
   <img src="assets/imagenes/terraza.jpg" pTooltip="Terraza" alt="terraza" width="100px" (mouseover)="mostrarTexto(1)"
     (mouseout)="ocultarTexto(1)">
@@ -13,54 +15,71 @@
     (mouseout)="ocultarTexto(4)">
   <div class="texto" [ngStyle]="{'opacity': textoVisible}">RESERVA EN EL AREA QUE MAS TE AGRADE</div>
 </section>
--->
 
-<section class="formularioR">
-  <div class="container">
-      <form [formGroup]="reserva" (ngSubmit)="guardarReserva()">
-        <div>
-          <label for="">Nombre: </label>
-          <input type="text" class="form-control" formControlName="name">
+
+  <section class="formularioR">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <form [formGroup]="reserva" (ngSubmit)="guardarReserva()">
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="place">Lugar</label>
+              <div>
+                <label for="terraza">
+                  <input type="radio" class="form-check-input" id="terraza" formControlName="place" name="place"
+                    value="Terraza">Terraza
+                </label>
+                <label for="aireLibre">
+                  <input type="radio" class="form-check-input" id="aireLibre" formControlName="place" name="place"
+                    value="Aire Libre">Aire Libre
+                </label>
+                <label for="primerPiso">
+                  <input type="radio" class="form-check-input" id="primerPiso" formControlName="place" name="place"
+                    value="Primer Piso">Primer Piso
+                </label>
+                <label for="segundoPiso">
+                  <input type="radio" class="form-check-input" id="segundoPiso" formControlName="place" name="place"
+                    value="Segundo Piso">Segundo Piso
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="persons" class="d-block">Cantidad de personas</label>
+              <select id="persons" class="form-select d-inline-block" formControlName="persons">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="date">Fecha y hora</label>
+              <div class="elegirFecha">
+                <p-calendar id="date" formControlName="date" [showIcon]="true" [showTime]="true" [showSeconds]="true"></p-calendar>
+                <div class="not" *ngIf="reserva.get('date')?.hasError('pastDate') && reserva.get('date')?.touched">
+                  La fecha seleccionada ya ha pasado. Por favor, elige una fecha futura.
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-outline-light">Guardar reserva</button>
+          </form>
         </div>
-        <div>
-          <label for="">Email: </label>
-          <input type="email" class="form-control" formControlName="email">
-        </div>
-        <div>
-          <label for="">
-            <input type="checkbox" class="form-check-input" formControlName="place" value="Terraza">Terraza
-          </label>
-          <label for="">
-            <input type="checkbox" class="form-check-input" formControlName="place" value="Aire Libre">Aire Libre
-          </label>
-          <label for="">
-            <input type="checkbox" class="form-check-input" formControlName="place" value="Primer Piso">Primer Piso
-          </label>
-          <label for="">
-            <input type="checkbox" class="form-check-input" formControlName="place" value="Segundo Piso">Segundo Piso
-          </label>
-        </div>
-        <div>
-          <label for="">Cantidad Personas: </label>
-          <select name="select" id="" class="form-select" formControlName="persons">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-          </select>
-        </div>
-        <div class="elegirFecha">
-          <p-calendar formControlName="date" [showIcon]="true" [showTime]="true" [showSeconds]="true"></p-calendar>
-        </div>
-        <button type="submit" class="btn btn-outline-light">Guardar reserva</button>
-      </form>
+      </div>
     </div>
-</section>
-<!--
+  </section>
+  <!--
 <section class="contenedor" [ngStyle]="{'color': 'white'}">
 
   <div class="calendario" [ngStyle]="{'color': 'white'}">
@@ -148,6 +167,7 @@
 </section>
 -->
 
-<div class="ti">
-  <img src="assets/imagenes/image.png" alt="">
-</div>
+  <div class="ti">
+    <img src="assets/imagenes/image.png" alt="">
+  </div>
+</body>

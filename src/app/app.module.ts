@@ -57,6 +57,10 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
+import { WindowsService } from './windows.service';
+import { FirebaseService } from './firebase.service';
+import { PhoneLoginComponent } from './phone-login/phone-login.component';
 
 
 
@@ -76,7 +80,9 @@ import { LoginComponent } from './login/login.component';
     DetallesComponent,
     OpinionComponent,
     CardComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent,
+    PhoneLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -108,7 +114,7 @@ import { LoginComponent } from './login/login.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
   ],
-  providers: [TablaService, MessageService, PromocionesService ],
+  providers: [TablaService, MessageService, PromocionesService, WindowsService, FirebaseService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
