@@ -1,3 +1,6 @@
+.menulogo{
+  background-color: #0B2B33;
+}
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -5,6 +8,7 @@
     align-items: center;
     padding: 1rem;
     position: fixed;
+    background-color: #2E5964;
   }
 
   a, h1, div{

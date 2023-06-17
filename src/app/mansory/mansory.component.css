@@ -36,6 +36,8 @@ img {
 }
 .grid-wrapper .wide {
 	grid-column: span 2;
+	width: 100%;
+	height: 100%;
 }
 .grid-wrapper .tall {
 	grid-row: span 2;
