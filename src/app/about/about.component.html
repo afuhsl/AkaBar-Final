@@ -3,49 +3,85 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pacifico&display=swap" rel="stylesheet">
 </head>
-<div class="ti">
+<div class="inicio">
   <h1 class="titulo">Conocenos</h1>
+ <!--Boton del modal-->
+  <div class="boton-modal">
+    <label for="btn-modal">
+         <img src="../../assets/imagenes/BotonAKA.png" width="400px">
+    </label>
 </div>
-<mat-tab-group dynamicHeight color="primary" backgroundColor="accent"> 
-    <mat-tab label="Sobre el sitio" >
-      <div style="float: left" class="example-small-box mat-elevation-z4">
-        <b>IMPORTANTE</b>
-      </div>
-      <P id="explicacion"> Este sitio web <strong>AKA | BAR</strong> es referebte a un bar, el sitio almacena reservaciones, en l apagina de Agendar, estas reservaciones, se observan en Citas</P>
-    </mat-tab>
-    <mat-tab label="Importante"  >
-      <div style="text-align: center;" class="example-large-box mat-elevation-z4">
-        EL SITIO NO TIENE RELACION CON NINGUN BAR EN LA VIDA REAL, ESTA ELEABORADO MERAMENTE PARA FINES EDUCATIVOS. ESTE SITIO ESTA CREADO PARA EVALUACION DE LA MATERIA DE TECNOLOGIAS WEB, DE LA CARRERA DE INGENIERIA EN SISTEMAS COMPUTACIONALES 
-      </div>
-    </mat-tab>
-</mat-tab-group>
-  
-  <mat-tab-group dynamicHeight color="primary" backgroundColor="warn">
-    <mat-tab label="Kenya Josselin Garcia Salazar">
-      <div class="example-large-box mat-elevation-z4" style="float: left">
-        <p><b>ID:</b> 211394<br> 
-            <b>Carrera:</b> Ingeneria en Sistemas Computacionales<br><br>
-            Universidad Autonoma de Aguascalientes
-        </p>
-      </div>
-      <img src="assets/imagenes/kenya.jpg" alt="">
-    </mat-tab>
-    <mat-tab label="Andres Noriega Villalobos">
-        <div class="example-large-box mat-elevation-z4" style="float: left">
-            <p><b>ID:</b> 253687<br> 
-                <b>Carrera:</b> Ingeneria en Sistemas Computacionales<br><br>
-                Universidad Autonoma de Aguascalientes
-            </p>
+<!--Fin de Boton-->
+<!--Ventana Modal-->
+<input type="checkbox" id="btn-modal">
+<div class="container-modal">
+    <div class="content-modal">
+        <h2>¡Bienvenido!</h2>
+        <p class="m">Donde la buena compañía y las deliciosas bebidas se combinan en un 
+          ambiente acogedor. Disfruta de nuestros exquisitos cócteles y música en vivo. 
+          Nuestro amable equipo te espera para brindarte una experiencia memorable. 
+          ¡Ven y únete a nosotros en AKA Bar para momentos inolvidables!</p>
+          <p class="m">"Este es un proyecto universitario"</p>
+        <div class="btn-cerrar">
+            <label for="btn-modal">Cerrar</label>
         </div>
-        <img src="assets/imagenes/andres.jpg" alt="">
-      </mat-tab>
-      <mat-tab label="Ariadna Judith Rosas Aguilar">
-        <div class="example-large-box mat-elevation-z4" style="float: left">
-            <p><b>ID:</b> 299012<br> 
-                <b>Carrera:</b> Ingeneria en Sistemas Computacionales<br><br>
-                Universidad Autonoma de Aguascalientes
-            </p>
-        </div>
-        <img src="assets/imagenes/ariadna.jpg" alt="">
-      </mat-tab>
-  </mat-tab-group>
+    </div>
+    <label for="btn-modal" class="cerrar-modal"></label>
+</div>
+
+
+
+  <div class="card-group">
+    <div class="card">
+      <img src="./assets/imagenes/AriR.jpeg" class="card-img-top" height="350" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">Ariadna Jidith Rosas Aguilar</p>
+        <p class="card-text">ISC</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./assets/imagenes/AndresN.jpeg" class="card-img-top" height="350" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">Andres Noriega Villalobos</p>
+        <p class="card-text">ISC</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./assets/imagenes/KenyaJ.jpeg" class="card-img-top"  height="350" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">Kenya Josselin Garcia Salazar</p>
+        <p class="card-text">ISC</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-group">
+    <div class="card">
+      <img src="./assets/imagenes/AlejandroD.jpeg" class="card-img-top" height="350" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">Alejandro Duran Plascencia</p>
+        <p class="card-text">ISC</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./assets/imagenes/LilianaP.jpeg" class="card-img-top" height="350" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">Cecilia Liliana Pedroza Casillas</p>
+        <p class="card-text">ISC</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="./assets/imagenes/IñakiM.jpeg" class="card-img-top"  height="350" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">Iñaki Nathan Martinez Martinez</p>
+        <p class="card-text">ISC</p>
+      </div>
+    </div>
+  </div>
+
+</div>
