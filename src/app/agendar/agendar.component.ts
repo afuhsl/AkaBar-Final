@@ -5,8 +5,6 @@ import { FirebaseService } from '../firebase.service';
 import { HttpClient } from '@angular/common/http';
 import * as Notiflix from 'notiflix';
 
-
-
 const LOCAL_STORAGE_KEY = 'citas'
 
 
@@ -44,8 +42,6 @@ export class AgendarComponent {
     this.cita.agendarCira(this.reserva.value)
     .then(() => {
       this.enviocita();
-      this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
-        this.reserva.reset();
       })
   }
 
@@ -64,6 +60,8 @@ export class AgendarComponent {
     this.httpclient.post('http://localhost:3000/envioCita',params).subscribe(resp=>{
       console.log(resp)
       Notiflix.Loading.remove();
+      this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
+        this.reserva.reset();
     })
    }
   /*
