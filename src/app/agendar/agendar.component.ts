@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors, FormBuilder } from '@angular/forms';
 import { FirebaseService } from '../firebase.service';
-import Swal from 'sweetalert2';
-
-
+import { Auth } from '@angular/fire/auth';
+import { Firestore, query, collection, getDocs, where } from '@angular/fire/firestore';
+import { HttpClient } from '@angular/common/http';
 
 const LOCAL_STORAGE_KEY = 'citas'
 
@@ -14,57 +14,117 @@ const LOCAL_STORAGE_KEY = 'citas'
   templateUrl: './agendar.component.html',
   styleUrls: ['./agendar.component.css']
 })
-export class AgendarComponent implements OnInit {
+export class AgendarComponent{
   reserva!: FormGroup;
 
 
   reservaGuardada: boolean = false;
   fechasGuardadas: Date[] = [];
   visible:boolean = false;
-  textoVisible: number =0;
+  textoVisible: number = 0;
   public loading: boolean;
 
 
 
   constructor(
+    private httpclient:HttpClient,
     private messageService: MessageService,
-    private cita: FirebaseService) {
+    private cita: FirebaseService,
+    private formBuilder: FormBuilder,
+    private afAuth: Auth,
+    private firestore: Firestore
+  ) {
     this.loading = true;
-    this.reserva = new FormGroup({
-      name: new FormControl(),
-      email : new FormControl(),
-      place : new FormControl(),
-      persons : new FormControl(),
-      date : new FormControl(),
-      })
+    this.reserva = this.formBuilder.group({
+      name: new FormControl('',[Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      place: new FormControl(),
+      persons: new FormControl(),
+      date: new FormControl('', [Validators.required, this.dateValidator()]),
+    })
   }
 
-  ngOnInit(): void {
+  guardarReserva() {
+    this.afAuth.onAuthStateChanged((user) => {
+      if (user) {
+        const userId = user.uid;
+        const cita = { ...this.reserva.value, userId };
+
+        const fechaSeleccionada: Date = cita.date;
+        this.verificarFechaExistente(fechaSeleccionada).then((existeFecha) => {
+          if (existeFecha) {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La fecha ya está reservada' });
+          } else {
+            this.cita.agendarCira(cita)
+              .then(() => {
+                this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
+                this.reserva.reset();
+              })
+              .catch((error) => {
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message });
+              });
+          }
+        })
+        .catch((error) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message });
+        });
+      }
+    });
   }
 
-  guardarReserva(){
+  //Valida que la fecha no halla pasado ya
+  dateValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const selectedDate: Date = control.value;
+      const currentDate: Date = new Date();
+
+      if (selectedDate <= currentDate) {
+        return { pastDate: true };
+      }
+
+      return null;
+    };
+  }
+
+  async verificarFechaExistente(fecha: Date): Promise<boolean> {
+    //Verifica que durante todo el dia no se halla guardado ya la fecha
+    const fechaInicio = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 0, 0, 0);
+    const fechaFin = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), 23, 59, 59);
+  
+    const citasRef = collection(this.firestore, 'Citas');
+    const citasQuery = query(citasRef, where('date', '>=', fechaInicio), where('date', '<=', fechaFin));
+  
+    const querySnapshot = await getDocs(citasQuery);
+    return querySnapshot.size > 0; // Verificar si hay algún resultado en la consulta
+  }
+
+
+  /*guardarReserva(){
     this.cita.agendarCira(this.reserva.value)
     .then(() => {
-      Swal.fire({
-        title: "Agendando Cita",
-        html: "Por favor espere",
-        imageUrl: "../../assets/imagenes/Loading(Duck).gif",
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-        showConfirmButton:false,
-        timer: 5000
-      }).then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: "Agendando Cita",
-          html: "Los esperamos pronto",
-          imageUrl: "../../assets/imagenes/Loading(Duck).gif",
-        })
-        this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
-        this.reserva.reset();
-      })
+      this.enviocita();
       })
   }
+
+  enviocita(){
+    Notiflix.Loading.standard('Cargando...');
+  
+    let params = {
+      email: this.reserva.value.email,
+      asunto: "Confirmacion de Cita",
+      nombre : this.reserva.value.name,
+      lugar : this.reserva.value.place,
+      personas : this.reserva.value.persons, 
+      fecha : this.reserva.value.date
+    }
+    console.log(params)
+    this.httpclient.post('http://localhost:3000/envioCita',params).subscribe(resp=>{
+      console.log(resp)
+      Notiflix.Loading.remove();
+      this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
+        this.reserva.reset();
+    })
+   }
   /*
   guardarReserva() {
     const reserva = {
@@ -124,7 +184,7 @@ export class AgendarComponent implements OnInit {
       
   }
 
- 
+ */
 
   mostrarTexto(numero: number) {
     this.textoVisible = numero;
@@ -133,5 +193,5 @@ export class AgendarComponent implements OnInit {
   ocultarTexto(numero: number) {
     this.textoVisible = 0;
   }
- */
+ 
 }

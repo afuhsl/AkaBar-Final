@@ -16,6 +16,15 @@
 	align-items: center;
 }
 
+body{
+	background-color: black;
+
+}
+
+p{
+	color: white;
+}
+
 @font-face{
 	font-family: 'Muthiara';
 	src: url('./fonts/Muthiara.otf') format('opentype');

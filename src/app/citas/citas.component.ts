@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TablaService } from '../tabla.service';
-import * as Notiflix from 'notiflix';
+import { Timestamp } from 'firebase/firestore';
+import { Auth } from '@angular/fire/auth';
+import { Firestore, collection, deleteDoc, doc, getDocs, query, where } from '@angular/fire/firestore';
+import { Cita } from '../cita';
+import { formatDate } from '@angular/common';
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-citas',
@@ -10,13 +14,31 @@ import * as Notiflix from 'notiflix';
 export class CitasComponent implements OnInit {
   lista: any[] = [];  
 
-  constructor( private tablaservice: TablaService){}
+  constructor( 
+    private auth : Auth,
+    private firestore: Firestore ,
+    private cita: FirebaseService){}
   
   ngOnInit(): void {
-    Notiflix.Loading.standard("Cargando...");
-    this.lista = this.tablaservice.getLista();
-    Notiflix.Loading.remove();
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        const citasRef = collection(this.firestore, 'Citas');
+        const citasQuery = query(citasRef, where('userId', '==', user.uid));
+
+        getDocs(citasQuery).then((querySnapshot) => {
+          this.lista = querySnapshot.docs.map((doc) => doc.data() as Cita);
+        });
+      }
+    });
   }
 
+  formatearFecha(fecha: Timestamp): string {
+    return formatDate(fecha.toDate(), 'dd/MM/yyyy', 'en-US');
+  }
+
+   onClickDelete(cita: Cita){
+     this.cita.eliminarCita(cita);
+    
+  }
  
 }

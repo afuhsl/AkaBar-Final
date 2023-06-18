@@ -171,6 +171,9 @@
           <h1>{{datos.titulo}}</h1>
           <p>{{datos.bio}}</p>
         </div>
+        <button id="log" class="btn btn-outline-light" [routerLink]="['login']"
+          *ngIf="!usuarioAutenticado">Login</button>
+        <button id="log" class="btn btn-outline-warning" (click)="salir()" *ngIf="usuarioAutenticado"> LogOut</button>
       </form>
     </div>
   </div>

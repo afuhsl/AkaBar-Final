@@ -1,0 +1,30 @@
+<div class>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="form-group three-fields">
+                <div class="input-group">
+                    <input type="text" class="form-control" [(ngModel)]='phoneNumber.pais'
+                        placeholder="+52" maxlength="3">
+                    <input type="text" class="form-control" [(ngModel)]='phoneNumber.area'
+                        placeholder="Codigo Area" maxlength="3">
+                    <input type="text" class="form-control" [(ngModel)]='phoneNumber.prefix'
+                        placeholder="7 digitos faltantes" maxlength="7">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="m-0 row justify-content-center align-items-center">
+    <div id="recaptcha-container"></div>
+</div>
+
+
+<button (click)="enviarCodigo()" class="btn btn-outline-success">Enviar codigo</button>
+
+<div *ngIf="windowRef.confirmationResult">
+    <label for="code">Ingresa tu codigo</label>
+    <input type="text" name="code" [(ngModel)]="verificarCodigo" class="input">
+
+    <button (click)="verificar()" class="btn btn-outline-info">Verificar</button>
+</div>

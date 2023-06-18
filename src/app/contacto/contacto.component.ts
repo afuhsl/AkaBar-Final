@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormControl,FormGroup,Validators } from '@angular/forms';
 import * as Notiflix from 'notiflix';
 
 @Component({
@@ -7,12 +9,31 @@ import * as Notiflix from 'notiflix';
   styleUrls: ['./contacto.component.css']
 })
 export class ContactoComponent {
-  constructor(){}
+ datos:FormGroup; 
 
-  submit(){
-    Notiflix.Loading.standard("Cargando...");
-    //Verificar si contacto funciona
-    Notiflix.Loading.remove();
-    Notiflix.Notify.success("Muchas gracias por los comentarios");
+ constructor(private httpclient:HttpClient){
+  this.datos = new FormGroup({
+    nombre: new FormControl ('',Validators.required),
+    correo: new FormControl ('',Validators.required),
+    asunto: new FormControl ('',Validators.required),
+    mensaje: new FormControl('',Validators.required)
+  })
+ }
+ enviocorreo(){
+  Notiflix.Loading.standard('Cargando...');
+
+  let params = {
+    email: 'reeksmoo@gmail.com',
+    asunto:this.datos.value.asunto,
+    mensaje:this.datos.value.mensaje
   }
+  console.log(params)
+  this.httpclient.post('http://localhost:3000/envio',params).subscribe(resp=>{
+    console.log(resp)
+    Notiflix.Loading.remove();
+    Notiflix.Notify.success('Enviado Correctamente');
+  })
+
+  this.datos.reset();
+ }
 }
