@@ -1,9 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, HostBinding } from '@angular/core';
 import {PromocionesService, Promo} from '../shared/promociones.service';
 import { MessageService } from 'primeng/api';
 import { Auth, user } from '@angular/fire/auth';
 import { FirebaseService } from '../firebase.service';
 import { Router } from '@angular/router';
+import * as Notiflix from 'notiflix';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit{
   promociones:Promo[];
   index:number=-1;
   datos!: Promo;
@@ -20,6 +22,8 @@ export class MenuComponent {
   usuario=false;
   admin =false;
   usuarioAutenticado: boolean = false;
+  theme: boolean = true;
+  tipo: boolean = true;
 
   @Input() busqueda: string = '';
 
@@ -28,7 +32,8 @@ export class MenuComponent {
     private messageService: MessageService,
     private auth: Auth,
     private ss : FirebaseService,
-    private ruta: Router) {
+    private ruta: Router,
+    public overlayContainer: OverlayContainer) {
     this.promociones=this.servicio.getPromociones();
     console.log(this.promociones);
 
@@ -49,11 +54,55 @@ export class MenuComponent {
     })
   
   }
+  ngOnInit(): void {
+    this.theme=true;
+    this.tipo=true;
+  }
 
+  tipografia(){
+    if(this.tipo==true){
+      return "'Times New Roman', Times, serif";
+    }else{
+      return "monospace";
+    }
+  }
+
+  CambiarT(){
+    if(this.tipo==true){
+      this.tipo=false;
+    }else{
+      this.tipo=true;
+    }
+  }
+
+  Cambiar(){
+    if(this.theme==true){
+      this.theme=false;
+    }else{
+      this.theme=true;
+    }
+  }
+
+  color(){
+    if(this.theme==true){
+      return '#ffffff';
+    }else{
+      return '#000000';
+    }
+  }
+
+  tema(){
+    if(this.theme==true){
+      return '#000000';
+    }else{
+      return '#ffffff';
+    }
+  }
 
   salir(){
     this.ss.logOut()
       .then((response) =>{
+        Notiflix.Notify.success("Vuelve pronto...");
         location.reload();
         console.log(response)
         this.ruta.navigate(['/home'])
