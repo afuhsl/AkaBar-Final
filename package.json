@@ -24,6 +24,7 @@
     "@mat-datetimepicker/core": "^11.0.3",
     "@ng-bootstrap/ng-bootstrap": "^14.1.0",
     "@popperjs/core": "^2.11.7",
+    "@techiediaries/ngx-qrcode": "^9.1.0",
     "angular-calendar": "^0.31.0",
     "bootstrap": "^5.2.3",
     "chart.js": "^2.9.4",

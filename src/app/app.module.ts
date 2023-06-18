@@ -65,7 +65,8 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { FQComponent } from './fq/fq.component';
 import { GraficasComponent } from './graficas/graficas.component';
 
-
+//QR
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { GraficasComponent } from './graficas/graficas.component';
     ToastModule,
     MessagesModule,
     HttpClientModule,
+    NgxQRCodeModule,
     DialogModule,
     MatTabsModule,
     TooltipModule,

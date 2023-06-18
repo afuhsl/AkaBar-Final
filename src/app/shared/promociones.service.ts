@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class PromocionesService {
 
-  private promociones:Promo[] = [
+  public promociones:Promo[] = [
     {
       nombre: "miercoles",
       titulo: "Dia de descanso",
