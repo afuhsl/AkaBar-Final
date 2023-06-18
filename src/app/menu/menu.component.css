@@ -1,3 +1,6 @@
+*{
+  background-color: #0B2B33;
+}
 .menulogo{
   background-color: #0B2B33;
 }
@@ -6,15 +9,20 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
     position: fixed;
     background-color: #2E5964;
   }
 
   a, h1, div{
-    color: white;
+    color: rgb(190, 180, 180);
+    background-color: #0B2B33;
   }
 
   #log{
     text-decoration: none;
   }
+  .navbar {
+    background-color: #0B2B33;
+  }
+  

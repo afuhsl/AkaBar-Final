@@ -15,7 +15,7 @@ img {
 }
 
 /* Main CSS */
-.grid-wrapper > div {
+.grid-wrapper > div { 
 	display: flex;
 	justify-content: center;
 	align-items: center;

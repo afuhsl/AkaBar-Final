@@ -2,16 +2,16 @@
   font-size: 50px;
   font-family: 'Muthiara';
   color: rgb(241, 236, 236);
-  background-color: #2E5964; 
+  background-color: #0B2B33;
   padding: 5%;  
   text-align: center;
 }
 
 .inicio{
-background-color: #2E5964;
+  background-color: #0B2B33;
 }
 .card{
-background-color: #2E5964;
+  background-color: #0B2B33;
 }
 .a{
 display: flex;
@@ -30,7 +30,7 @@ padding-bottom: -5%;
 }
 .card{
 padding: 50px;
-border-color:#2E5964; ;
+border-color:#0B2B33; ;
 }
 
 
