@@ -4,10 +4,9 @@ import { FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, Valid
 import { FirebaseService } from '../firebase.service';
 import { Auth } from '@angular/fire/auth';
 import { Firestore, query, collection, getDocs, where } from '@angular/fire/firestore';
-
-
 import { HttpClient } from '@angular/common/http';
-import * as Notiflix from 'notiflix';
+
+const LOCAL_STORAGE_KEY = 'citas'
 
 
 @Component({
@@ -15,14 +14,15 @@ import * as Notiflix from 'notiflix';
   templateUrl: './agendar.component.html',
   styleUrls: ['./agendar.component.css']
 })
-export class AgendarComponent {
+export class AgendarComponent{
   reserva!: FormGroup;
 
 
   reservaGuardada: boolean = false;
   fechasGuardadas: Date[] = [];
-  visible: boolean = false;
+  visible:boolean = false;
   textoVisible: number = 0;
+  public loading: boolean;
 
 
 
@@ -34,6 +34,7 @@ export class AgendarComponent {
     private afAuth: Auth,
     private firestore: Firestore
   ) {
+    this.loading = true;
     this.reserva = this.formBuilder.group({
       name: new FormControl('',[Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.email]),
