@@ -5,11 +5,12 @@ import { FirebaseService } from '../firebase.service';
 import { Auth } from '@angular/fire/auth';
 import { Firestore, query, collection, getDocs, where } from '@angular/fire/firestore';
 import { HttpClient } from '@angular/common/http';
+import { PromocionesService } from '../shared/promociones.service';
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 
 import * as Notiflix from 'notiflix';
 
-const LOCAL_STORAGE_KEY = 'citas'
-
+const LOCAL_STORAGE_KEY = 'citas';
 
 @Component({
   selector: 'app-agendar',
@@ -44,6 +45,7 @@ export class AgendarComponent{
       persons: new FormControl(),
       date: new FormControl('', [Validators.required, this.dateValidator()]),
     })
+    
   }
 
   guardarReserva() {
@@ -194,5 +196,48 @@ export class AgendarComponent{
   ocultarTexto(numero: number) {
     this.textoVisible = 0;
   }
+  data: Promo[] = [
+    {
+      nombre: "miercoles",
+      titulo: "Dia de descanso",
+      bio: "Todos los Miercoles comprando 2 botellas seleccionadas te damos la otra a mitad de precio. *Valido hasta las 10:30 pm *Aplica restricciones *Botellas seleccionadas",
+      
+      
+    },
+    {
+      nombre: "jueves",
+      titulo: "Ladie's Night",
+      bio: "Barra libre para ellas *Valido los jueves de 5:00 a 9:00 pm *Aplica restricciones",
+      
+      
+    },
+    {
+      nombre: "viernes",
+      titulo: "Botella cumpleañera",
+      bio: "Presentando tu INE te regalamos una botella    *Botellas seleccionadas   *Aplica restricciones     *Valido de Viernes a Domingo de 5:00 a 10:00 pm",
+      
+      
+    },
+    {
+      nombre: "domingo",
+      titulo: "Domingo de Cocteleria",
+      bio: "2x1 en toda la cocteleria valido de 2:00 a 8:00",
+     
+    }
+    
+    ]
+    
+  value = JSON.stringify(this.data[0]); 
+  elementType = NgxQrcodeElementTypes.URL;
+  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+  
+  cambiarDato(){
+    this.value = JSON.stringify(this.data[Math.floor(Math.random() * 3)]);
  
+}
+}
+interface Promo {
+  nombre: String;
+  titulo: String;
+  bio: String;
 }
