@@ -28,7 +28,7 @@ export class GraficasComponent {
   constructor(){}
   
   ngOnInit():void{
-    
+    this.mostrar();
   }
 
   mostrar(): void{

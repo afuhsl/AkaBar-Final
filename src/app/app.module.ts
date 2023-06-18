@@ -64,6 +64,7 @@ import { PhoneLoginComponent } from './phone-login/phone-login.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { FQComponent } from './fq/fq.component';
 import { GraficasComponent } from './graficas/graficas.component';
+import { BebidasListComponent } from './bebidas-list/bebidas-list.component';
 
 
 
@@ -88,7 +89,8 @@ import { GraficasComponent } from './graficas/graficas.component';
     PhoneLoginComponent,
     ContactoComponent,
     FQComponent,
-    GraficasComponent
+    GraficasComponent,
+    BebidasListComponent
   ],
   imports: [
     BrowserModule,

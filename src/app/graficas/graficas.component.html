@@ -1,6 +1,7 @@
-<button type="button" class="btn btn-success" (click)="mostrar()">Mostrar datos</button>
-
-<div *ngIf="visible" class="container mt-3">  
+<!--<button type="button" class="btn btn-success" (click)="mostrar()">Mostrar datos</button>
+*ngIf="visible"
+-->
+<div class="container mt-3">  
     <table class="table table-hover">
       <thead>
         <tr>
@@ -21,15 +22,14 @@
         </tr>
       </tbody>
     </table> 
-    <div class="container mt-3">
-      <div style="width: 45%;">
-        <canvas id="myChart" width="700" height="450">{{chart}}</canvas>
-      </div>
+</div>
+<div class="general">
+  <div class="container mt-3">
+    <div style="width: 50%; float: left;">
+      <canvas id="myChart" width="700" height="450">{{chart}}</canvas>
     </div>
-    <br>
-    <div class="container mt-3">
-      <div style="width: 45%;">
-        <canvas id="myChart1" width="700" height="450">{{chart}}</canvas>
-      </div>
-    </div> 
+    <div style="width: 50%;">
+      <canvas id="myChart1" width="700" height="450">{{chart}}</canvas>
+    </div>
+  </div> 
 </div>
