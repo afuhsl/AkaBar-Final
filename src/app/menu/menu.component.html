@@ -1,7 +1,9 @@
 <nav class="navbar sticky-top navbar-expand-lg" [ngStyle]="{'background-color':tema()}">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="assets/imagenes/logo.png"
-        alt="Logo" style="width:100px;" class="rounded-pill"></a>
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="assets/imagenes/logo.png" alt="Logo" style="width:100px;" class="rounded-pill"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="mynavbar" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
       <ul class="navbar-nav me-auto">
         <li class="nav-item" routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
@@ -35,12 +37,6 @@
             <li  routerLinkActive="active">
               <a class="dropdown-item" [routerLink]="['']" [ngStyle]="{'color':color(), 'font-family':tipografia()}">Mi Espacio</a>
             </li>
-            <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['contacto']" [ngStyle]="{'color':color(), 'font-family':tipografia()}">Contactanos</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['preguntas']" [ngStyle]="{'color':color(), 'font-family':tipografia()}">Ayuda</a>
-        </li>
           </ul>
         </li>
         <li class="nav-item" routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
@@ -96,7 +92,7 @@
             <a class="dropdown-item" [routerLink]="['mansory']"><img src="assets/imagenes/galeria.jpg" alt="AW" style="width: 25px; height: 25px;" class="rounded-pill"></a>
           </li>
         </ul>
-      </li>
+      </li>    
     </div>
   </div>
 </nav>
