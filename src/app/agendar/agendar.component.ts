@@ -6,6 +6,8 @@ import { Auth } from '@angular/fire/auth';
 import { Firestore, query, collection, getDocs, where } from '@angular/fire/firestore';
 import { HttpClient } from '@angular/common/http';
 
+import * as Notiflix from 'notiflix';
+
 const LOCAL_STORAGE_KEY = 'citas'
 
 
@@ -57,8 +59,7 @@ export class AgendarComponent{
           } else {
             this.cita.agendarCira(cita)
               .then(() => {
-                this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
-                this.reserva.reset();
+                this.enviocita();
               })
               .catch((error) => {
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: error.message });
@@ -97,15 +98,6 @@ export class AgendarComponent{
     const querySnapshot = await getDocs(citasQuery);
     return querySnapshot.size > 0; // Verificar si hay algún resultado en la consulta
   }
-
-
-  /*guardarReserva(){
-    this.cita.agendarCira(this.reserva.value)
-    .then(() => {
-      this.enviocita();
-      })
-  }
-
   enviocita(){
     Notiflix.Loading.standard('Cargando...');
   
@@ -125,6 +117,15 @@ export class AgendarComponent{
         this.reserva.reset();
     })
    }
+
+  /*guardarReserva(){
+    this.cita.agendarCira(this.reserva.value)
+    .then(() => {
+      this.enviocita();
+      })
+  }
+
+  
   /*
   guardarReserva() {
     const reserva = {
@@ -185,7 +186,7 @@ export class AgendarComponent{
   }
 
  */
-
+  
   mostrarTexto(numero: number) {
     this.textoVisible = numero;
   }
