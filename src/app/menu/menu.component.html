@@ -1,9 +1,11 @@
-<nav class="menulogo navbar sticky-top navbar-expand-lg " >
+<nav class="navbar  navbar-expand-lg navbar-dark bg-dark sticky-top bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="../../assets/imagenes/Aka (3).png"
-        alt="Logo" style="width:100px;" class="rounded-pill"></a>
-    <div class="collapse navbar-collapse" id="mynavbar">
-      <ul class="navbar-nav me-auto">
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="assets/imagenes/logo.png"alt="Logo" style="width:100px;" class="rounded-pill"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['home']">Inicio</a>
         </li>
@@ -16,31 +18,27 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['preguntas']">Ayuda</a>
         </li>
-        
         <li class="nav-item dropdown" *ngIf="usuario">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Reservaciones
           </a>
           <ul class="dropdown-menu dropdown-menu-dark">
-            <li  routerLinkActive="active" >
+            <li routerLinkActive="active">
               <a class="dropdown-item" [routerLink]="['agendar']">Hacer Reservacion</a>
             </li>
-            <li  routerLinkActive="active">
+            <li routerLinkActive="active">
               <a class="dropdown-item" [routerLink]="['citas']">Ver Citas</a>
             </li>
-            <li  routerLinkActive="active">
+            <li routerLinkActive="active">
               <a class="dropdown-item" [routerLink]="['sidenav']">Reseñas</a>
             </li>
-            <li><hr class="dropdown-divider"></li>
-            <li  routerLinkActive="active">
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li routerLinkActive="active">
               <a class="dropdown-item" [routerLink]="['']">Mi Espacio</a>
             </li>
-            <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['contacto']">Contactanos</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink]="['preguntas']">Ayuda</a>
-        </li>
+          
           </ul>
         </li>
         <li class="nav-item" routerLinkActive="active">
@@ -51,20 +49,22 @@
             Admin
           </a>
           <ul class="dropdown-menu dropdown-menu-dark">
-            <li  routerLinkActive="active">
-              <a class="dropdown-item" [routerLink]="['']">Usuario</a>
+            <li routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['admin']">Usuario</a>
             </li>
-            <li  routerLinkActive="active">
-              <a class="dropdown-item" [routerLink]="['graficas']">Graficas</a>
+            <li routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['']">Graficas</a>
             </li>
-            <li><hr class="dropdown-divider"></li>
-            <li  routerLinkActive="active">
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li routerLinkActive="active">
               <a class="dropdown-item" [routerLink]="['']">Mi Espacio</a>
             </li>
           </ul>
         </li>
-        
       </ul>
+      <form class="d-flex" role="search">
       <app-buscar (buscar)="ver($event)"></app-buscar>
       <p-toast></p-toast>
       <div *ngIf="visible">
@@ -76,6 +76,7 @@
       
       <button id="log" class="btn btn-outline-light"> <a [routerLink]="['login']" *ngIf="!usuarioAutenticado">Login</a></button>
       <button id="log" class="btn btn-outline-warning" (click)="salir()" *ngIf="usuarioAutenticado"> LogOut</button>
+    </form>  
       <!--<input class="form-control me-2" type="text" placeholder="Search">
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -156,55 +157,10 @@
           <h1>{{datos.titulo}}</h1>
           <p>{{datos.bio}}</p>
         </div>
+        <button id="log" class="btn btn-outline-light" [routerLink]="['login']"
+          *ngIf="!usuarioAutenticado">Login</button>
+        <button id="log" class="btn btn-outline-warning" (click)="salir()" *ngIf="usuarioAutenticado"> LogOut</button>
       </form>
     </div>
   </div>
 </nav>-->
-
-<!--//Button trigger sidenav
-<div class="d-flex justify-content-center align-items-center" >
-  <div>
-    <button type="button" class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-      <h1><img src="assets/imagenes/menu.png" alt="" width="15px" height="15px"> MENU</h1>
-    </button>
-  </div>
-</div>
-
-Sidenav 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <a class="navbar-brand" href="#"><img src="assets/imagenes/logo.png" width="400px"></a>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <ul class="navbar-nav">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link"  [routerLink]="['home']">Home</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link"  [routerLink]="['about']">About</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link"  [routerLink]="['agendar']">Reservations</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['citas']">Citas</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['mansory']">Gallery</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['sidenav']">Reseñas</a>
-      </li>
-    </ul>
-    <form class="d-flex">
-      <app-buscar (buscar)="ver($event)"></app-buscar>
-      <p-toast></p-toast>
-      <div *ngIf="visible">
-        <img width="200px" [src]="datos.img" alt="{{datos.nombre}}">
-        <h1>{{datos.titulo}}</h1>
-        <p>{{datos.bio}}</p>
-      </div>
-    </form>
-  </div>
-</div>-->

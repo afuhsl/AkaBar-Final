@@ -4,6 +4,9 @@ import { FirebaseService } from '../firebase.service';
 import { Router } from '@angular/router';
 import { WindowsService } from '../windows.service';
 import { RecaptchaVerifier, getAuth, signInWithPhoneNumber } from 'firebase/auth';
+import { MessageService } from 'primeng/api';
+
+
 
 @Component({
   selector: 'app-login',
@@ -14,17 +17,15 @@ export class LoginComponent implements OnInit {
   selectedTemplate: string | null = null;
   register!: FormGroup;
   formAccesso!: FormGroup;
-  formPhone!: FormGroup;
-  windowRef: any;
-  auth = getAuth();
-  verificarCodigo: string = '';
+  
+  
 
 
   constructor(
     private Usuario: FirebaseService,
     private router: Router,
     private win: WindowsService,
-    private rouer: Router
+    private messageService: MessageService
   ) {
     //Formulario de Regisgtro
     this.register = new FormGroup({
@@ -42,9 +43,6 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
     });
 
-    this.formPhone = new FormGroup({
-      phone: new FormControl('', [Validators.required, Validators.minLength(10)])
-    })
   }
 
 
@@ -62,47 +60,24 @@ export class LoginComponent implements OnInit {
   logIn() {
     this.Usuario.login(this.formAccesso.value)
       .then(response => {
-        alert('Bienvenido')
+        this.messageService.add({ key: 'tc', severity: 'success', summary: 'success', detail: 'Bienvenido' });
         this.router.navigate(['/home']);
         console.log(response)
       })
       .catch(error => {
+        this.messageService.add({ key: 'tc', severity: 'warn', summary: 'warn', detail: 'Error al iniciar sesion' });
         console.log(error)
       });
   }
 
   ngOnInit(): void {
-    this.windowRef = this.win.windowRef;
-    this.windowRef.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {}, this.auth);
-    this.windowRef.recaptchaVerifier.render();
+  
   }
 
   //Acceso con numero de telefono
-  onSubmit() {
-    const num = this.formPhone.value;
-    const appVerifier = this.windowRef.recaptchaVerifier;
-    
-      signInWithPhoneNumber(this.auth, num, appVerifier)
-          .then((confirmationResult) => {
-            this.windowRef.confirmationResult = confirmationResult;
-          })
-          .catch((error) => {
-            console.log(error, 'Error')
-          });
-    
+ 
 
-  }
-
-  verificar(){
-    this.windowRef.confirmationResult.confirm(this.verificarCodigo)
-      .then((result: any)=> {
-        console.log(result)
-        this.rouer.navigate(['/main']);
-      })
-      .catch((error: any) => {
-        console.log(error);
-      })
-  }
+  
   //Boton del formulario de registro
   registrar() {
     console.log(this.register.value);

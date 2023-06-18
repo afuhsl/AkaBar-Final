@@ -1,0 +1,21 @@
+<div *ngIf="!(bebidasService.recetas$ | async)?.length; else list">
+    <p>no hay nada</p>
+</div>
+<ng-template #list>
+    <div *ngFor="let list of bebidasService.recetas$ | async" class="card-group col-6 mx-auto d-block">
+        <div class="card" style="display: flexbox; flex-direction: row;">
+          <div class="card-body">
+            <h3 class="card-title">{{list.strDrink}}</h3>
+            <p class="card-text"> Glass: <br><small class="text-muted">{{list.strGlass}}</small></p>
+            <p class="card-text"> Instrucciones: <br><small class="text-muted">{{list.strInstructions}}</small></p>
+            <p class="card-text"> Ingredientes: <br><small class="text-muted">{{list.strIngredient1}}</small>
+            <br><small class="text-muted">{{list.strIngredient2}}</small>
+            <br> <small class="text-muted">{{list.strIngredient3}}</small></p>
+          </div>
+          <div>
+            <img class="card-img-top mx-auto d-block" src="{{list.strDrinkThumb}}" alt="Card image cap" style="height: 250px; width: 250px; padding: 20px;">
+          </div>
+        </div>
+ </div>
+</ng-template>
+    
