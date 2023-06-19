@@ -78,8 +78,6 @@ mat-datepicker{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  
-  background-color: black;
   color:white;
 }
  
@@ -87,9 +85,7 @@ div{
   font-family: 'Ubuntu-Regular';
 }
 
-section{
-  background-color: black;
-}
+
 .not, #not{
   font-size: 15px;
   color: rgb(207, 10, 10);
@@ -121,11 +117,10 @@ section{
 
 
 .container{
-  background-color: rgba(252, 252, 252, 0.281);
   width: 500px;
 }
-.QR{
-  background-color: black;
+.QR{ 
+
  align-items: end;
  padding-left: 100px;
  margin-top: 0;
@@ -158,4 +153,8 @@ textarea {
     margin-right: auto;
     width: 250px;
     opacity: .5;
+}
+
+*{
+  background-color: #0B2B33;
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { WindowsService } from '../windows.service';
 import { RecaptchaVerifier, getAuth, signInWithPhoneNumber } from 'firebase/auth';
 import { MessageService } from 'primeng/api';
+import * as Notiflix from 'notiflix';
 
 
 
@@ -58,11 +59,16 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
+    Notiflix.Loading.standard('Cargando...');
+
     this.Usuario.login(this.formAccesso.value)
       .then(response => {
+        Notiflix.Loading.remove();
+
         this.messageService.add({ severity: 'success', summary: 'Bienvenido!!', detail: 'Bienvenido a AkaBar' });
         this.router.navigate(['/home']);
         console.log(response)
+
       })
       .catch(error => {
         this.messageService.add({ severity: 'error', summary: 'Cuenta no encontrada!!', detail: 'Intentalo de nuevo' });
@@ -80,10 +86,15 @@ export class LoginComponent implements OnInit {
   
   //Boton del formulario de registro
   registrar() {
+    Notiflix.Loading.standard('Cargando...');
+
     console.log(this.register.value);
     //Guarda datos en la base de datos nosql
     this.Usuario.agregarRegistro(this.register.value)
+    
       .then(response => {
+        Notiflix.Loading.remove();
+
         this.messageService.add({ severity: 'success', summary: 'Exito!!', detail: 'Registro Guardado' });
         //Crea el usuario en firebase con email y contraseña
         this.Usuario.crearCuenta(this.register.value)

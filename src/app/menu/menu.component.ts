@@ -93,19 +93,22 @@ export class MenuComponent implements OnInit{
 
   tema(){
     if(this.theme==true){
-      return '#000000';
+      return '#2e5964';
     }else{
       return '#ffffff';
     }
   }
 
   salir(){
+    Notiflix.Loading.standard('Cargando...');
+
     this.ss.logOut()
       .then((response) =>{
+        Notiflix.Loading.remove();
         Notiflix.Notify.success("Vuelve pronto...");
-        location.reload();
         console.log(response)
         this.ruta.navigate(['/home'])
+        location.reload();
       })
       .catch((error) =>{
         console.log(error);
