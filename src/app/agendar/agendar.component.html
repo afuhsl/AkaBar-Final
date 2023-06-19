@@ -1,0 +1,324 @@
+<body>
+  <div class="ti">
+    <br /><br /><br /><br /><br />
+    <h1 class="titulo">Haz tu Reservacion</h1>
+  </div>
+
+  <!--<section class="servicios d-flex flex-wrap" [ngStyle]="{ color: 'white' }">
+    <img
+      src="assets/imagenes/terraza.jpg"
+      pTooltip="Terraza"
+      alt="terraza"
+      width="100px"
+      (mouseover)="mostrarTexto(1)"
+      (mouseout)="ocultarTexto(1)"
+      class="col-sm-6 col-md-4 col-lg-3 w-100"
+    />
+    <img
+      src="assets/imagenes/nivel1.jpg"
+      pTooltip="Piso1"
+      alt=""
+      width="100px"
+      (mouseover)="mostrarTexto(2)"
+      (mouseout)="ocultarTexto(2)"
+      class="col-sm-6 col-md-4 col-lg-3 w-100"
+    />
+    <img
+      src="assets/imagenes/nivel2.jpg"
+      pTooltip="Piso2"
+      alt=""
+      width="100px"
+      (mouseover)="mostrarTexto(3)"
+      (mouseout)="ocultarTexto(3)"
+      class="col-sm-6 col-md-4 col-lg-3 w-100"
+    />
+    <img
+      src="assets/imagenes/calle.jpeg"
+      pTooltip="Aire Libre"
+      alt=""
+      width="100px"
+      (mouseover)="mostrarTexto(4)"
+      (mouseout)="ocultarTexto(4)"
+      class="col-sm-6 col-md-4 col-lg-3 w-100"
+    />
+    <div class="texto" [ngStyle]="{ opacity: textoVisible }">
+      RESERVA EN EL AREA QUE MAS TE AGRADE
+    </div>
+  </section>
+-->
+  <section class="servicios d-flex flex wrap">
+    <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 v-100">
+      <img src="assets/imagenes/terraza.jpg" pTooltip="Terraza" class="img-fluid" alt="terraza"  (mouseover)="mostrarTexto(1)" (mouseout)="ocultarTexto(1)">
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <img src="assets/imagenes/nivel1.jpg" pTooltip="Piso1" alt="" class="img-fluid" (mouseover)="mostrarTexto(2)" (mouseout)="ocultarTexto(2)">
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <img src="assets/imagenes/nivel2.jpg" pTooltip="Piso2" alt="" class="img-fluid" (mouseover)="mostrarTexto(3)" (mouseout)="ocultarTexto(3)">
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <img src="assets/imagenes/calle.jpeg" pTooltip="Aire Libre" alt=""  class="img-fluid" (mouseover)="mostrarTexto(4)" (mouseout)="ocultarTexto(4)">
+    </div>
+  </div>
+  </section>
+
+
+  <section class="formularioR">
+    <div class="container" style="background-color: rgba(199, 241, 236, 0.719);">
+      <div class="form-row">
+        <div class="col-md-6 col-xs-12 offset-md-3">
+          <form
+            [formGroup]="reserva"
+            (ngSubmit)="guardarReserva()"
+            class="needs-validation"
+            novalidate
+          >
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                formControlName="name"
+                placeholder="Nombre"
+                [ngClass]="{ 'is-invalid': !reserva.get('name')?.valid }"
+              />
+              <div
+                *ngIf="reserva.controls['name'].errors?.['required']"
+                class="invalid-feedback"
+              >
+                El Nombre es necesario
+              </div>
+              <div
+                *ngIf="reserva.controls['name'].errors?.['minlength']"
+                class="invalid-feedback"
+              >
+                Por lo menos 3 caracteres
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                placeholder="Email"
+                [ngClass]="{ 'is-invalid': !reserva.get('email')?.valid }"
+              />
+              <div
+                *ngIf="reserva.controls['email'].errors?.['required']"
+                class="invalid-feedback"
+              >
+                Correo obligatorio
+              </div>
+              <div
+                *ngIf="reserva.controls['email'].errors?.['email']"
+                class="invalid-feedback"
+              >
+                El correo no tiene el formato correcto
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="place">Lugar</label>
+              <div>
+                <label for="terraza">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="terraza"
+                    formControlName="place"
+                    name="place"
+                    value="Terraza"
+                  />Terraza
+                </label>
+                <label for="aireLibre">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="aireLibre"
+                    formControlName="place"
+                    name="place"
+                    value="Aire Libre"
+                  />Aire Libre
+                </label>
+                <label for="primerPiso">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="primerPiso"
+                    formControlName="place"
+                    name="place"
+                    value="Primer Piso"
+                  />Primer Piso
+                </label>
+                <label for="segundoPiso">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="segundoPiso"
+                    formControlName="place"
+                    name="place"
+                    value="Segundo Piso"
+                  />Segundo Piso
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="persons" class="d-block">Cantidad de personas</label>
+              <select
+                id="persons"
+                class="form-select d-inline-block"
+                formControlName="persons"
+
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="date">Fecha y hora</label>
+              <div class="elegirFecha">
+                <p-calendar
+                  id="date"
+                  formControlName="date"
+                  [showIcon]="true"
+                  [showTime]="true"
+                  [showSeconds]="true"
+                ></p-calendar>
+                <div
+                  class="not"
+                  *ngIf="
+                    reserva.get('date')?.hasError('pastDate') &&
+                    reserva.get('date')?.touched
+                  "
+                >
+                  La fecha seleccionada ya ha pasado. Por favor, elige una fecha
+                  futura.
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-outline-light">
+              Guardar reserva
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--
+<section class="contenedor" [ngStyle]="{'color': 'white'}">
+
+  <div class="calendario" [ngStyle]="{'color': 'white'}">
+    <div class="hijo">
+      <p-calendar [inline]="true" [disabledDates]="fechasGuardadas" styleClass="disabled-date"></p-calendar>
+    </div>
+  </div>
+
+  <div class="formu">
+    <form (submit)="guardarReserva()">
+      <div>
+        <label> Nombre:
+          <br>
+          <input pInputText class="p-inputtext-lg" type="text" [(ngModel)]="nombre2" name="nombre" required>
+        </label>
+      </div>
+      <div>
+        <label>Email
+          <br>
+          <input type="text" pInputText class="p-inputtext-lg" [(ngModel)]="email2" name="email" required>
+
+        </label>
+      </div>
+      <div [ngStyle]="{'color': 'white'}">
+        <label>Cantidad de personas:
+          <br>
+          <input pInputText class="p-inputtext-lg" type="number" [(ngModel)]="cantidadPersonas2" name="cantidadPersonas"
+            required>
+        </label>
+      </div>
+      <div [ngStyle]="{'color': 'white'}">
+        <label>
+          Servicio:
+          <br>
+          <select pInputText class="p-inputtext-lg" aria-placeholder="Selecciona Lugar" [(ngModel)]="servicio2"
+            name="servicio" required>
+            <option value="Terraza">Terraza 1</option>
+            <option value="Piso1">Piso 1</option>
+            <option value="Piso2">Piso 2</option>
+            <option value="Acera">Acera</option>
+          </select>
+        </label>
+      </div>
+      <br>
+      <div class="elegirFecha" [ngStyle]="{'color': 'white'}">
+        <mat-form-field class="example-full-width" color="primary" backgroundColor="primary">
+          <mat-label>Seleccione Fecha</mat-label>
+          <input color="primary" name="fecha" matInput [matDatepicker]="fechaPicker" [(ngModel)]="fecha2" required>
+          <mat-datepicker-toggle color="primary" backgroundColor="primary" matSuffix
+            [for]="fechaPicker"></mat-datepicker-toggle>
+          <mat-datepicker color="primary" backgroundColor="primary" touchUi #fechaPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <label>
+          Hora:
+          <br>
+          <input pInputText class="p-inputtext-lg" type="time" [(ngModel)]="hora2" name="hora" required>
+        </label>
+      </div>
+      <br><br>
+      <p-toast></p-toast>
+      <button type="submit" class="btn btn-outline-light">Guardar reserva</button>
+      <button type="button" class="btn btn-outline-light" (click)="mostrarUltimaReserva()"
+        [disabled]="!reservaGuardada">Ver Reservacion</button>
+      <p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
+        <ng-template pTemplate="header">
+          <span class="text-xl font-bold">Reserva</span>
+        </ng-template>
+        <div *ngIf="ultimaResrvacion">
+          <p>Nombre: {{ultimaResrvacion.nombre}}</p>
+          <p>Email: {{ultimaResrvacion.email}}</p>
+          <p>Cantidad de personas: {{ultimaResrvacion.cantidadPersonas}}</p>
+          <p>Servicio: {{ultimaResrvacion.servicio}}</p>
+          <p>Fecha: {{ultimaResrvacion.fecha | date: 'dd/MM/yyyy'}}</p>
+          <p>Hora: {{ultimaResrvacion.hora}}</p>
+        </div>
+        <ng-template pTemplate="footer">
+          <p-button icon="pi pi-check" (click)="visible = false" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+      </p-dialog>
+    </form>
+  </div>
+</section>
+-->
+
+  <div class="QR">
+    <p>Escanea Nuestros QR para poder ver nuestro menu y Promociones</p>
+    <img
+      src="../assets/imagenes/QR.png"
+      class="rounded mx-auto d-block"
+      alt="..."
+      width="200px"
+      height="200px"
+    />
+      <ngx-qrcode
+      [elementType]="elementType"
+      [errorCorrectionLevel]="correctionLevel"
+      [value]="value"
+      cssClass="bshadow"
+    ></ngx-qrcode>
+  
+    
+    <button (click)="cambiarDato()"type="button" class="btn btn-primary">Nueva Promo</button>
+  </div>
+</body>

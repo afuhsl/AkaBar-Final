@@ -1,0 +1,112 @@
+<nav class="navbar navbar-expand-lg sticky-top" data-bs-theme="dark" [ngStyle]="{'background-color':tema()}">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['home']"><img src="assets/imagenes/logo.png"
+        alt="Logo" style="width:100px;" class="rounded-pill"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item" routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+          <a class="nav-link" [routerLink]="['home']"
+            [ngStyle]="{'color':color(), 'font-family':tipografia()}">Inicio</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+          <a class="nav-link" [routerLink]="['about']"
+            [ngStyle]="{'color':color(), 'font-family':tipografia()}">Conocenos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+          <a class="nav-link" [routerLink]="['contacto']"
+            [ngStyle]="{'color':color(), 'font-family':tipografia()}">Contactanos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+          <a class="nav-link" [routerLink]="['preguntas']"
+            [ngStyle]="{'color':color(), 'font-family':tipografia()}">Ayuda</a>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="usuario">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+            Reservaciones
+          </a>
+          <ul class="dropdown-menu" [ngStyle]="{'background-color':tema()}">
+            <li routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['agendar']"
+                [ngStyle]="{'color':color(), 'font-family':tipografia()}">Hacer Reservacion</a>
+            </li>
+            <li routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['citas']"
+                [ngStyle]="{'color':color(), 'font-family':tipografia()}">Ver Citas</a>
+            </li>
+            <li routerLinkActive="active">
+              <a class="dropdown-item" [routerLink]="['sidenav']"
+                [ngStyle]="{'color':color(), 'font-family':tipografia()}">Reseñas</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+          <a class="nav-link" [routerLink]="['mansory']"
+            [ngStyle]="{'color':color(), 'font-family':tipografia()}">Galeria</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="admin">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+            Admin
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+              <a class="dropdown-item" [routerLink]="['admin']"
+                [ngStyle]="{'color':color(), 'font-family':tipografia()}">Usuarios</a>
+            </li>
+            <li routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+              <a class="dropdown-item" [routerLink]="['graficas']"
+                [ngStyle]="{'color':color(), 'font-family':tipografia()}">Graficas</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <app-buscar (buscar)="ver($event)"></app-buscar>
+      <p-toast></p-toast>
+      <div *ngIf="visible">
+        <img width="200px" [src]="datos.img" alt="{{datos.nombre}}">
+        <h1 [ngStyle]="{'color':color(), 'font-family':tipografia()}">{{datos.titulo}}</h1>
+        <p>{{datos.bio}}</p>
+      </div>
+
+      <button id="log" class="btn btn-outline-warning" [routerLink]="['login']" *ngIf="!usuarioAutenticado"
+        style="color: rgb(255, 215, 0)">Login</button>
+      <button id="log" class="btn btn-outline-warning" (click)="salir()" *ngIf="usuarioAutenticado"> Salir</button>
+      <li class="nav-item dropdown" style="padding-right: 10px;">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+          [ngStyle]="{'color':color(), 'font-family':tipografia()}">
+          <img src="assets/imagenes/Accesibilidad.png" alt="AW" style="width: 50px; height: 50px;" class="rounded-pill">
+        </a>
+
+        <div class="dropdown-menu" style="background-color: grey;">
+          <li class="dropdown-item">
+            <button id="theme" class="btn btn-outline-light" (click)="Cambiar()">Theme</button>
+          </li>
+          <li class="dropdown-item">
+            <button id="theme" class="btn btn-outline-light" (click)="CambiarT()">Tipografia</button>
+          </li>
+          <li routerLinkActive="active">
+            <a class="dropdown-item" [routerLink]="['home']"><img src="assets/imagenes/casa.png" alt="AW"
+                style="width: 25px; height: 25px;" class="rounded-pill"></a>
+          </li>
+          <li routerLinkActive="active">
+            <a class="dropdown-item" [routerLink]="['about']"><img src="assets/imagenes/about.png" alt="AW"
+                style="width: 25px; height: 25px;" class="rounded-pill"></a>
+          </li>
+          <li routerLinkActive="active">
+            <a class="dropdown-item" [routerLink]="['mansory']"><img src="assets/imagenes/galeria.jpg" alt="AW"
+                style="width: 25px; height: 25px;" class="rounded-pill"></a>
+          </li>
+        </div>
+      </li>
+    </div>
+  </div>
+</nav>
+
