@@ -19,7 +19,7 @@ export class BuscarComponent {
   constructor(private bebidasService: BebidasService, private route: Router){};
 
   enviar(): void{
-    const urapi =  `http://localhost:3000/fetch_alcohol/${this.Bebida}`;
+    const urapi =  `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${this.Bebida}`;
     this.bebidasService.setRecetas(urapi);
     this.route.navigate(['bebidas']);
   }

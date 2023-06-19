@@ -4,7 +4,7 @@
     <h1 class="titulo">Haz tu Reservacion</h1>
   </div>
 
-  <section class="servicios" [ngStyle]="{ color: 'white' }">
+  <!--<section class="servicios d-flex flex-wrap" [ngStyle]="{ color: 'white' }">
     <img
       src="assets/imagenes/terraza.jpg"
       pTooltip="Terraza"
@@ -12,6 +12,7 @@
       width="100px"
       (mouseover)="mostrarTexto(1)"
       (mouseout)="ocultarTexto(1)"
+      class="col-sm-6 col-md-4 col-lg-3 w-100"
     />
     <img
       src="assets/imagenes/nivel1.jpg"
@@ -20,6 +21,7 @@
       width="100px"
       (mouseover)="mostrarTexto(2)"
       (mouseout)="ocultarTexto(2)"
+      class="col-sm-6 col-md-4 col-lg-3 w-100"
     />
     <img
       src="assets/imagenes/nivel2.jpg"
@@ -28,6 +30,7 @@
       width="100px"
       (mouseover)="mostrarTexto(3)"
       (mouseout)="ocultarTexto(3)"
+      class="col-sm-6 col-md-4 col-lg-3 w-100"
     />
     <img
       src="assets/imagenes/calle.jpeg"
@@ -36,16 +39,35 @@
       width="100px"
       (mouseover)="mostrarTexto(4)"
       (mouseout)="ocultarTexto(4)"
+      class="col-sm-6 col-md-4 col-lg-3 w-100"
     />
     <div class="texto" [ngStyle]="{ opacity: textoVisible }">
       RESERVA EN EL AREA QUE MAS TE AGRADE
     </div>
   </section>
+-->
+  <section class="servicios d-flex flex wrap">
+    <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 v-100">
+      <img src="assets/imagenes/terraza.jpg" pTooltip="Terraza" class="img-fluid" alt="terraza"  (mouseover)="mostrarTexto(1)" (mouseout)="ocultarTexto(1)">
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <img src="assets/imagenes/nivel1.jpg" pTooltip="Piso1" alt="" class="img-fluid" (mouseover)="mostrarTexto(2)" (mouseout)="ocultarTexto(2)">
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <img src="assets/imagenes/nivel2.jpg" pTooltip="Piso2" alt="" class="img-fluid" (mouseover)="mostrarTexto(3)" (mouseout)="ocultarTexto(3)">
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <img src="assets/imagenes/calle.jpeg" pTooltip="Aire Libre" alt=""  class="img-fluid" (mouseover)="mostrarTexto(4)" (mouseout)="ocultarTexto(4)">
+    </div>
+  </div>
+  </section>
+
 
   <section class="formularioR">
     <div class="container" style="background-color: rgba(199, 241, 236, 0.719);">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
+      <div class="form-row">
+        <div class="col-md-6 col-xs-12 offset-md-3">
           <form
             [formGroup]="reserva"
             (ngSubmit)="guardarReserva()"
@@ -149,6 +171,7 @@
                 id="persons"
                 class="form-select d-inline-block"
                 formControlName="persons"
+
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -278,7 +301,7 @@
   </div>
 </section>
 -->
- 
+
   <div class="QR">
     <p>Escanea Nuestros QR para poder ver nuestro menu y Promociones</p>
     <img

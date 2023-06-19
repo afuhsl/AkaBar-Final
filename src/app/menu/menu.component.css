@@ -1,6 +1,11 @@
 .menulogo{
   background-color: #0B2B33;
 }
+
+.navbar .icon {
+  display: none;
+}
+
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -20,5 +25,27 @@
   }
   li{
     padding-left: 10px;
+  }
+  @media screen and (max-width: 600px) {
+    .navbar a:not(:first-child) {display: none;}
+    .navbar a.icon {
+      float: right;
+      display: block;
+    }
+  }
+  
+  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+  @media screen and (max-width: 600px) {
+    .navbar.responsive {position: relative;}
+    .topnav.responsive a.icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .navbar.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
   }
 
