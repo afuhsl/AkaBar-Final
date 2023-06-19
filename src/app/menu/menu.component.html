@@ -33,10 +33,6 @@
             <li  routerLinkActive="active">
               <a class="dropdown-item" [routerLink]="['sidenav']" [ngStyle]="{'color':color(), 'font-family':tipografia()}">Reseñas</a>
             </li>
-            <li><hr class="dropdown-divider"></li>
-            <li  routerLinkActive="active">
-              <a class="dropdown-item" [routerLink]="['']" [ngStyle]="{'color':color(), 'font-family':tipografia()}">Mi Espacio</a>
-            </li>
           </ul>
         </li>
         <li class="nav-item" routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
@@ -48,14 +44,10 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark">
             <li  routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
-              <a class="dropdown-item" [routerLink]="['admin']" [ngStyle]="{'color':color(), 'font-family':tipografia()}">Usuario</a>
+              <a class="dropdown-item" [routerLink]="['admin']" [ngStyle]="{'color':color(), 'font-family':tipografia()}">Usuarios</a>
             </li>
             <li  routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
               <a class="dropdown-item" [routerLink]="['graficas']" [ngStyle]="{'color':color(), 'font-family':tipografia()}">Graficas</a>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li  routerLinkActive="active" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
-              <a class="dropdown-item" [routerLink]="['']" [ngStyle]="{'color':color(), 'font-family':tipografia()}">Mi Espacio</a>
             </li>
           </ul>
         </li>
@@ -69,8 +61,8 @@
         <p>{{datos.bio}}</p>
       </div>
       
-      <button id="log" class="btn btn-outline-warning"> <a [routerLink]="['login']" *ngIf="!usuarioAutenticado" style="color: rgb(255, 215, 0)">Login</a></button>
-      <button id="log" class="btn btn-outline-warning" (click)="salir()" *ngIf="usuarioAutenticado"> LogOut</button>
+      <button id="log" class="btn btn-outline-warning" [routerLink]="['login']" *ngIf="!usuarioAutenticado" style="color: rgb(255, 215, 0)">Login</button>
+      <button id="log" class="btn btn-outline-warning" (click)="salir()" *ngIf="usuarioAutenticado"> Salir</button>
       <li class="nav-item dropdown" style="padding-right: 10px;">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" [ngStyle]="{'color':color(), 'font-family':tipografia()}">
           <img src="assets/imagenes/Accesibilidad.png" alt="AW" style="width: 50px; height: 50px;" class="rounded-pill">

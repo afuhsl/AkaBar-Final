@@ -3,6 +3,53 @@
 <h2 class="titulo">Bienvenido Otra vez, Admin!!</h2>
 
 <div class="container">
+    <h3>Clientes Registrados</h3>
+    <table class="table table-bordered  table-hover">
+        <thead class="table-info">
+            <tr>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of user">
+                <td>{{cliente.name}}</td>
+                <td>{{cliente.username}}</td>
+                <td>{{cliente.email}}</td>
+                <td>{{cliente.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <h3>Citas Registradas</h3>
+    <table class="table table-bordered  table-hover">
+        <thead class="table-warning">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Fecha</th>
+                <th>Area</th>
+                <th>Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reservacion of cita">
+                <td>{{reservacion.name}}</td>
+                <td>{{reservacion.email}}</td>
+                <td>{{ formatearFecha(reservacion.date) }}</td>
+                <td>{{reservacion.place}}</td>
+                <td>{{reservacion.persons}}</td>
+            </tr>
+        </tbody>
+        </table>
+</div>
+
+<div class="container">
+    <h3>Tblas Filtradas</h3>
     <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
             <h2 class="accordion-header">
@@ -14,7 +61,7 @@
             <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                     <table class="table table-hover">
-                        <thead>
+                        <thead class="bg-warning">
                             <tr>
                                 <th>Nombre</th>
                                 <th>Email</th>
@@ -48,7 +95,7 @@
                 <div class="accordion-body">
                     <div>
                         <table class="table table-hover">
-                            <thead>
+                            <thead class="bg-info">
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Email</th>
@@ -83,7 +130,7 @@
                 <div class="accordion-body">
                     <div>
                         <table class="table table-hover">
-                            <thead>
+                            <thead class="bg-danger">
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Email</th>

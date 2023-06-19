@@ -1,5 +1,10 @@
 <div *ngIf="!(bebidasService.recetas$ | async)?.length; else list">
-    <p>no hay nada</p>
+  <div class="container alert alert-danger" role="alert">
+    <h4 class="alert-heading">Nada por aqui!</h4>
+    <p>Desafortunadamente por el momento no encontramos nada que coincida con tu busqueda.</p>
+    <hr>
+    <p class="mb-0">Regresa despues, o intentalo con otro trago.</p>
+  </div>
 </div>
 <ng-template #list>
     <div *ngFor="let list of bebidasService.recetas$ | async" class="card-group col-6 mx-auto d-block">
