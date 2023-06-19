@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 //Rutas
 import { AppRoutingModule } from './app-routing.module';
@@ -64,6 +64,7 @@ import { PhoneLoginComponent } from './phone-login/phone-login.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { FQComponent } from './fq/fq.component';
 import { GraficasComponent } from './graficas/graficas.component';
+import { BebidasListComponent } from './bebidas-list/bebidas-list.component';
 
 //QR
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
@@ -89,7 +90,8 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     PhoneLoginComponent,
     ContactoComponent,
     FQComponent,
-    GraficasComponent
+    GraficasComponent,
+    BebidasListComponent,
   ],
   imports: [
     BrowserModule,

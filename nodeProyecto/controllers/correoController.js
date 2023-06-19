@@ -54,9 +54,6 @@ const envioCita = (req=request, resp=response)  =>{
         <h3>Lugar de reservacion: ${body.lugar}</h3>
         <h3>Cantidad de personas: ${body.personas}</h3>
         <h3>Fecha y hora de las reservacion: ${body.fecha}</h3>`
-        /*subject: 'Confirmacion de cita',
-        to: body.email,
-        text: 'Gracias por escribirnos, hemos recibido tu mensaje y con gusto resolveremos tus dudas. Nos encontramos trabajando en ellas'*/
     };
 
     config.sendMail(opciones,function(error,result){

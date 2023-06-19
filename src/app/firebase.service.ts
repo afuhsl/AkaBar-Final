@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Firestore, QuerySnapshot, addDoc, collection, deleteDoc, doc, getDocs, query, where,  } from '@angular/fire/firestore';
+import { Firestore, QuerySnapshot, addDoc, collection, collectionData, deleteDoc, doc, getDocs, query, where,  } from '@angular/fire/firestore';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from '@angular/fire/auth'
 import { Registro } from './registro';
 import { Cita } from './cita';
 import 'firebase/auth';
+import { Observable } from 'rxjs';
 
 
 
@@ -39,6 +40,17 @@ export class FirebaseService {
   logOut(){
     return signOut(this.auth);
   }
+
+  mostrarUsuarios(): Observable<Registro[]>{
+    const user = collection(this.firestore, 'Usuarios');
+    return collectionData(user, {idField: 'id'}) as Observable<Registro[]>;
+  }
+
+  mostrarCitas(): Observable<Cita[]>{
+    const cita = collection(this.firestore, 'Citas');
+    return collectionData(cita, {idField: 'id'}) as Observable<Cita[]>;
+  }
+  
 
   eliminarCita(cita: Cita){
     const  cit = doc(this.firestore,`Citas/${cita.id}`);

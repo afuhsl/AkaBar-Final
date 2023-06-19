@@ -1,35 +1,119 @@
-<button type="button" class="btn btn-success" (click)="mostrar()">Mostrar datos</button>
+<!--<button type="button" class="btn btn-success" (click)="mostrar()">Mostrar datos</button>
+*ngIf="visible"
+-->
 
-<div *ngIf="visible" class="container mt-3">  
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Zona</th>
-          <th>Cantidad de personas</th>
-          <th>Hora concurrida</th>
-          <th>Servicio mas solicitado</th>
-          <th>Cantidad de veces solicitado el servicio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let dato of datos; let i=index ">
-          <td >{{servicio[i]}}</td>
-          <td >{{dato.cantidad}}</td>
-          <td >{{dato.hora}}:00 horas</td>
-          <td>{{promociones[i]}}</td>
-          <td >{{dato.pedidos}}</td>
-        </tr>
-      </tbody>
-    </table> 
-    <div class="container mt-3">
-      <div style="width: 45%;">
-        <canvas id="myChart" width="700" height="450">{{chart}}</canvas>
-      </div>
+
+<div class="container">
+  <h4>Cantidad de reservaciones por mes</h4>
+  <div class="row">
+    <div class="col">
+      <canvas #myChart></canvas>
     </div>
-    <br>
-    <div class="container mt-3">
-      <div style="width: 45%;">
-        <canvas id="myChart1" width="700" height="450">{{chart}}</canvas>
-      </div>
-    </div> 
+    <div class="col d-flex justify-content-center align-items-center">
+      <table class="table">
+        <thead class="bg-danger">
+          <tr>
+            <th>Nombre</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservacion of cit">
+            <td>{{reservacion.name}}</td>
+            <td>{{ formatearFecha(reservacion.date) }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
 </div>
+<div class="container">
+  <h4>Cantidad de reservaciones por Area</h4>
+  <div class="row">
+    <div class="col d-flex justify-content-center align-items-center">
+      <table class="table">
+        <thead class="bg-success">
+          <tr>
+            <th>Nombre</th>
+            <th>Area</th>
+            <th>Cant. Personas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservacion of cit">
+            <td>{{reservacion.name}}</td>
+            <td>{{reservacion.place}}</td>
+            <td>{{reservacion.persons}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+    <div class="col">
+      <canvas #myChart2></canvas>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h4>Cantidad de personas por reservacion</h4>
+  <div class="row">
+    <div class="col">
+      <canvas #myChart3></canvas>
+    </div>
+    <div class="col d-flex justify-content-center align-items-center">
+      <table class="table">
+        <thead class="bg-info">
+          <tr>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Cant. Personas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservacion of cit">
+            <td>{{reservacion.name}}</td>
+            <td>{{ formatearFecha(reservacion.date) }}</td>
+            <td>{{reservacion.persons}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--
+  <div class="container mt-3">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Zona</th>
+        <th>Cantidad de personas</th>
+        <th>Hora concurrida</th>
+        <th>Servicio mas solicitado</th>
+        <th>Cantidad de veces solicitado el servicio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dato of datos; let i=index ">
+        <td>{{servicio[i]}}</td>
+        <td>{{dato.cantidad}}</td>
+        <td>{{dato.hora}}:00 horas</td>
+        <td>{{promociones[i]}}</td>
+        <td>{{dato.pedidos}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="general">
+  <div class="container mt-3">
+    <div style="width: 50%; float: left;">
+      <canvas id="myChart" width="700" height="450">{{chart}}</canvas>
+    </div>
+    <div style="width: 50%;">
+      <canvas id="myChart1" width="700" height="450">{{chart}}</canvas>
+    </div>
+  </div>
+</div>
+-->

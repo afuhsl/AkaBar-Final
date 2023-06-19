@@ -60,12 +60,12 @@ export class LoginComponent implements OnInit {
   logIn() {
     this.Usuario.login(this.formAccesso.value)
       .then(response => {
-        this.messageService.add({ key: 'tc', severity: 'success', summary: 'success', detail: 'Bienvenido' });
+        this.messageService.add({ severity: 'success', summary: 'Bienvenido!!', detail: 'Bienvenido a AkaBar' });
         this.router.navigate(['/home']);
         console.log(response)
       })
       .catch(error => {
-        this.messageService.add({ key: 'tc', severity: 'warn', summary: 'warn', detail: 'Error al iniciar sesion' });
+        this.messageService.add({ severity: 'error', summary: 'Cuenta no encontrada!!', detail: 'Intentalo de nuevo' });
         console.log(error)
       });
   }
@@ -84,13 +84,14 @@ export class LoginComponent implements OnInit {
     //Guarda datos en la base de datos nosql
     this.Usuario.agregarRegistro(this.register.value)
       .then(response => {
-        alert('Registro Guardado')
+        this.messageService.add({ severity: 'success', summary: 'Exito!!', detail: 'Registro Guardado' });
         //Crea el usuario en firebase con email y contraseña
         this.Usuario.crearCuenta(this.register.value)
         console.log(response);
+        this.register.reset();
       })
       .catch(error => {
-        alert('Error registro')
+        this.messageService.add({ severity: 'error', summary: 'Lo sentimos!!', detail: 'El registro no se pudo realizar' });
         console.log(error);
       })
   }

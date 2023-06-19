@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Firestore, collection, getDocs, query, where } from '@angular/fire/firestore';
 import { Cita } from '../cita';
 import { Timestamp } from 'firebase/firestore';
+import { FirebaseService } from '../firebase.service';
+import { Registro } from '../registro';
 
 
 @Component({
@@ -14,14 +16,23 @@ export class AdminComponent implements OnInit{
   citasProximos7Dias: any[] = [];
   registros: any[] = [];
   consulta3: any[] = [];
+  user! : Registro[];
+  cita!: Cita[];
 
-  constructor(private firestore: Firestore) {
+  constructor(
+    private firestore: Firestore,
+    private Usuario : FirebaseService) {
     this.obtenerCitasProximas();
     this.obtenerRegistrosPersonasMayores5();
     this.obtenerRegistrosTerraza();
   }
   ngOnInit(): void {
-    
+    this.Usuario.mostrarUsuarios().subscribe( user =>{
+      this.user =user;
+    });
+    this.Usuario.mostrarCitas().subscribe(cita =>{
+      this.cita =cita;
+    })
   }
 
   obtenerCitasProximas(){
