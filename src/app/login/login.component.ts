@@ -71,6 +71,7 @@ export class LoginComponent implements OnInit {
 
       })
       .catch(error => {
+        Notiflix.Loading.remove();
         this.messageService.add({ severity: 'error', summary: 'Cuenta no encontrada!!', detail: 'Intentalo de nuevo' });
         console.log(error)
       });
@@ -102,6 +103,7 @@ export class LoginComponent implements OnInit {
         this.register.reset();
       })
       .catch(error => {
+        Notiflix.Loading.remove();
         this.messageService.add({ severity: 'error', summary: 'Lo sentimos!!', detail: 'El registro no se pudo realizar' });
         console.log(error);
       })

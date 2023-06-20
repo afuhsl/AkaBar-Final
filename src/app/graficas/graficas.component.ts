@@ -7,7 +7,6 @@ import { FirebaseService } from '../firebase.service';
 import { Cita } from '../cita';
 import { formatDate } from '@angular/common';
 
-type dato = Array<{ cantidad: any; hora: any; pedidos: any }>;
 
 @Component({
   selector: 'app-graficas',
@@ -18,8 +17,6 @@ export class GraficasComponent {
   public chart!: Chart;
   visible:boolean =false;
   
-  servicio: string[]=['Terraza','Piso1','Piso2','Acera'];
-  promociones: string[]=['Botella cumpleañera','Miercoles de descanso', 'Barra libre para ellas','Domingo de cocteleria'];
   numeros: any[]=[];
   solicitud: any[]=[];
   tiempo: any[]=[];

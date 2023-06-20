@@ -8,7 +8,6 @@ export class PhoneNumber {
   area : string = '';
   prefix: string = '';
 
-
   //formato e164
   get e164() {
     const num = this.pais + this.area + this. prefix;
