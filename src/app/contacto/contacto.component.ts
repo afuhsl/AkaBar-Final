@@ -31,7 +31,7 @@ export class ContactoComponent {
     mensaje:this.datos.value.mensaje
   }
   console.log(params)
-  this.httpclient.post('/envio',params).subscribe(resp=>{
+  this.httpclient.post('http://localhost:3000/envio',params).subscribe(resp=>{
     console.log(resp)
     this.messageService.add({ severity: 'success', summary: 'Bienvenido!!', detail: 'Bienvenido a AkaBar' });
     Notiflix.Loading.remove();

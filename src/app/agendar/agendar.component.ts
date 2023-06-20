@@ -112,7 +112,7 @@ export class AgendarComponent{
       fecha : this.reserva.value.date
     }
     console.log(params)
-    this.httpclient.post('/envioCita',params).subscribe(resp=>{
+    this.httpclient.post('http://localhost:3000/envioCita',params).subscribe(resp=>{
       console.log(resp)
       Notiflix.Loading.remove();
       this.messageService.add({ severity: 'success', summary: 'Cita Guardada', detail: 'Cita Guardada' });
